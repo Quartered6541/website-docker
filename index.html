@@ -6,7 +6,7 @@
     <title>Docker - Контейнеризация веб-приложений</title>
     <link href="https://unpkg.com/@primer/css@^21.0.0/dist/primer.css" rel="stylesheet">
 </head>
-<body>
+<body class="d-flex flex-column" style="min-height: 100vh;">
     <header class="Header bg-blue-light p-3">
         <div class="container-lg">
             <h1 class="h1-mktg text-center mb-4">Docker - Контейнеризация веб-приложений</h1>
@@ -27,7 +27,8 @@
         </div>
     </header>
 
-    <main class="container-lg p-4">
+    <div class="container-lg d-flex flex-row flex-1">
+        <main class="p-4 flex-auto">
         <div class="Box mb-4">
             <div class="Box-header">
                 <h2 class="Box-title">Что такое Docker?</h2>
@@ -54,23 +55,36 @@
                 <p>Для начала работы с Docker необходимо установить Docker Engine на вашу систему. Процесс установки различается в зависимости от операционной системы: Linux, Windows или macOS.</p>
             </div>
         </div>
-    </main>
+        </main>
 
-    <aside class="border-left bg-gray-light p-4">
-        <h2 class="h3 mb-3">Быстрые ссылки</h2>
-        <ul class="list-style-none pl-0">
-            <li class="mb-2"><a href="#">Популярные команды</a></li>
-            <li class="mb-2"><a href="#">Официальная документация</a></li>
-            <li class="mb-2"><a href="#">Docker Hub</a></li>
-        </ul>
+        <aside class="p-4" style="width: 300px;">
+            <div class="Box mb-3">
+                <div class="Box-header">
+                    <h2 class="Box-title">Быстрые ссылки</h2>
+                </div>
+                <div class="Box-body">
+                    <ul class="list-style-none pl-0 m-0">
+                        <li class="mb-2"><a href="#">Популярные команды</a></li>
+                        <li class="mb-2"><a href="#">Официальная документация</a></li>
+                        <li class="mb-2"><a href="#">Docker Hub</a></li>
+                    </ul>
+                </div>
+            </div>
 
-        <h3 class="h4 mb-3 mt-4">Полезные ресурсы</h3>
-        <ul class="list-style-none pl-0">
-            <li class="mb-2"><a href="#">Сообщество Docker</a></li>
-            <li class="mb-2"><a href="#">Видеоуроки</a></li>
-            <li class="mb-2"><a href="#">Примеры проектов</a></li>
-        </ul>
-    </aside>
+            <div class="Box">
+                <div class="Box-header">
+                    <h2 class="Box-title">Полезные ресурсы</h2>
+                </div>
+                <div class="Box-body">
+                    <ul class="list-style-none pl-0 m-0">
+                        <li class="mb-2"><a href="#">Сообщество Docker</a></li>
+                        <li class="mb-2"><a href="#">Видеоуроки</a></li>
+                        <li class="mb-2"><a href="#">Примеры проектов</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
 
     <footer class="bg-gray-dark text-white p-4 text-center">
         <p class="m-0">&copy; 2025 Docker Tutorial</p>
