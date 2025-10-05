@@ -7,7 +7,7 @@
     <link href="https://unpkg.com/@primer/css@^21.0.0/dist/primer.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column" style="min-height: 100vh;">
-    <header class="Header bg-blue-light p-3">
+    <header class="Header bg-blue-light p-3" id="main-header" style="position: sticky; top: 0; z-index: 1000; transition: transform 0.3s ease-in-out;">
         <div class="px-4">
             <h1 class="h3 m-0 mb-3">Docker Tutorial</h1>
             <nav>
@@ -195,6 +195,24 @@
 
             setTimeout(typeWriter, speed);
         }
+
+        // Скрытие/показ header при прокрутке
+        let lastScrollTop = 0;
+        const header = document.getElementById('main-header');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Прокрутка вниз - скрываем header
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                // Прокрутка вверх - показываем header
+                header.style.transform = 'translateY(0)';
+            }
+
+            lastScrollTop = scrollTop;
+        });
 
         // Запуск анимации при загрузке страницы
         document.addEventListener('DOMContentLoaded', typeWriter);
