@@ -130,8 +130,8 @@
         }
     </style>
 
-    <div class="d-flex flex-row flex-1 px-4" id="content-section" style="background-color: #f6f8fa; position: relative; padding-top: 70px;">
-        <main class="p-4" style="flex: 4;">
+    <div class="flex-1 px-4" id="content-section" style="background-color: #f6f8fa; position: relative; padding-top: 70px;">
+        <main class="p-4">
 
         <div class="Box mb-4">
             <div class="Box-header">
@@ -178,50 +178,58 @@
         </div>
         </main>
 
-        <aside class="p-4" style="flex: 1;">
-            <div class="Box mb-3">
-                <div class="Box-header">
-                    <h2 class="Box-title">Быстрые ссылки</h2>
-                </div>
-                <div class="Box-body">
-                    <ul class="list-style-none pl-0 m-0">
-                        <li class="mb-2"><a href="#">Популярные команды</a></li>
-                        <li class="mb-2"><a href="#">Официальная документация</a></li>
-                        <li class="mb-2"><a href="#">Docker Hub</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="Box mb-3">
-                <div class="Box-header">
-                    <h2 class="Box-title">Полезные ресурсы</h2>
-                </div>
-                <div class="Box-body">
-                    <ul class="list-style-none pl-0 m-0">
-                        <li class="mb-2"><a href="#">Сообщество Docker</a></li>
-                        <li class="mb-2"><a href="#">Видеоуроки</a></li>
-                        <li class="mb-2"><a href="#">Примеры проектов</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="Box">
-                <div class="Box-header">
-                    <h2 class="Box-title">Подписка на новости</h2>
-                </div>
-                <div class="Box-body">
-                    <p class="text-small mb-3">Получайте актуальные новости о Docker и контейнеризации</p>
-                    <form>
-                        <div class="mb-3">
-                            <label for="email" class="form-label d-block mb-1">Email адрес</label>
-                            <input type="email" id="email" class="form-control input-block" placeholder="your@email.com" required>
+        <aside class="p-4">
+            <div class="d-flex flex-wrap" style="gap: 1.5rem;">
+                <div style="flex: 1 1 300px;">
+                    <div class="Box">
+                        <div class="Box-header">
+                            <h2 class="Box-title">Быстрые ссылки</h2>
                         </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label d-block mb-1">Имя</label>
-                            <input type="text" id="name" class="form-control input-block" placeholder="Ваше имя" required>
+                        <div class="Box-body">
+                            <ul class="list-style-none pl-0 m-0">
+                                <li class="mb-2"><a href="#">Популярные команды</a></li>
+                                <li class="mb-2"><a href="#">Официальная документация</a></li>
+                                <li class="mb-2"><a href="#">Docker Hub</a></li>
+                            </ul>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Подписаться</button>
-                    </form>
+                    </div>
+                </div>
+
+                <div style="flex: 1 1 300px;">
+                    <div class="Box">
+                        <div class="Box-header">
+                            <h2 class="Box-title">Полезные ресурсы</h2>
+                        </div>
+                        <div class="Box-body">
+                            <ul class="list-style-none pl-0 m-0">
+                                <li class="mb-2"><a href="#">Сообщество Docker</a></li>
+                                <li class="mb-2"><a href="#">Видеоуроки</a></li>
+                                <li class="mb-2"><a href="#">Примеры проектов</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="flex: 1 1 300px;">
+                    <div class="Box">
+                        <div class="Box-header">
+                            <h2 class="Box-title">Подписка на новости</h2>
+                        </div>
+                        <div class="Box-body">
+                            <p class="text-small mb-3">Получайте актуальные новости о Docker и контейнеризации</p>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label d-block mb-1">Email адрес</label>
+                                    <input type="email" id="email" class="form-control input-block" placeholder="your@email.com" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label d-block mb-1">Имя</label>
+                                    <input type="text" id="name" class="form-control input-block" placeholder="Ваше имя" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Подписаться</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </aside>
