@@ -30,11 +30,28 @@
     <div class="px-4">
         <div class="text-center py-5">
             <h1 class="h0-mktg mb-3">
-                Разрабатывайте <span id="typewriter"></span>
+                Разрабатывайте <span id="typewriter"></span><span class="cursor">|</span>
             </h1>
             <p class="lead text-gray mb-4">Платформа для создания, развертывания и запуска приложений в контейнерах</p>
         </div>
     </div>
+
+    <style>
+        .cursor {
+            display: inline-block;
+            animation: blink 0.7s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            51%, 100% {
+                opacity: 0;
+            }
+        }
+    </style>
 
     <div class="d-flex flex-row flex-1 px-4">
         <main class="p-4" style="flex: 3;">
