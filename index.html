@@ -87,6 +87,13 @@
                 display: block !important;
             }
         }
+
+        /* Скрываем мобильное меню на широких экранах */
+        @media (min-width: 1301px) {
+            #mobile-nav {
+                display: none !important;
+            }
+        }
     </style>
 
     <div class="d-flex flex-row flex-1 px-4">
@@ -268,6 +275,14 @@
                 mobileNav.style.display = 'block';
             } else {
                 mobileNav.style.display = 'none';
+            }
+        });
+
+        // Закрытие мобильного меню при изменении размера окна
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1300 && isMenuOpen) {
+                mobileNav.style.display = 'none';
+                isMenuOpen = false;
             }
         });
 
