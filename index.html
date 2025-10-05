@@ -94,9 +94,22 @@
                 display: none !important;
             }
         }
+
+        /* Эффект изгиба вниз для голубого фона */
+        #content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background-color: #ffffff;
+            border-bottom-left-radius: 50% 100px;
+            border-bottom-right-radius: 50% 100px;
+        }
     </style>
 
-    <div class="d-flex flex-row flex-1 px-4" style="background-color: #f6f8fa; border-top-left-radius: 50% 100px; border-top-right-radius: 50% 100px; position: relative; margin-top: -50px; padding-top: 70px;">
+    <div class="d-flex flex-row flex-1 px-4" id="content-section" style="background-color: #f6f8fa; position: relative; padding-top: 70px;">
         <main class="p-4" style="flex: 4;">
 
         <div class="Box mb-4">
