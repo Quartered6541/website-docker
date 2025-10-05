@@ -36,16 +36,16 @@
 
     <nav id="mobile-nav" style="display: none; background-color: #ffffff; border-bottom: 1px solid #d0d7de; position: sticky; top: 0; z-index: 999; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out;">
         <ul class="list-style-none p-0 m-0">
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="index.html" class="btn btn-primary" style="width: 100%; text-align: left; border-radius: 0;">Главная</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Что такое Docker</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Установка Docker</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Основные команды</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Создание образов (Dockerfile)</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Оркестрация контейнеров (Docker Compose)</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Примеры использования</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Лучшие практики</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Решение проблем</a></li>
-            <li><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Ресурсы и документация</a></li>
+            <li class="border-bottom" style="border-color: #d0d7de;"><a href="index.html" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #0969da; font-weight: 600; transition: all 0.3s ease;">Главная</a></li>
+            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Что такое Docker</a></li>
+            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Установка Docker</a></li>
+            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Основные команды</a></li>
+            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Создание образов (Dockerfile)</a></li>
+            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Оркестрация контейнеров (Docker Compose)</a></li>
+            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Примеры использования</a></li>
+            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Лучшие практики</a></li>
+            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Решение проблем</a></li>
+            <li><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Ресурсы и документация</a></li>
         </ul>
     </nav>
 
@@ -106,6 +106,13 @@
             background-color: #ffffff;
             border-bottom-left-radius: 50% 100px;
             border-bottom-right-radius: 50% 100px;
+        }
+
+        /* Стилизация мобильного меню */
+        .mobile-menu-item:hover {
+            background-color: rgba(9, 105, 218, 0.1);
+            box-shadow: 0 0 15px rgba(9, 105, 218, 0.3);
+            color: #0969da !important;
         }
     </style>
 
