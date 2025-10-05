@@ -164,6 +164,7 @@
         const typingSpeed = 150;
         const deletingSpeed = 100;
         const pauseBetweenWords = 2000;
+        const pauseAfterDeleting = 500;
 
         function typeWriter() {
             const currentWord = words[wordIndex];
@@ -189,6 +190,7 @@
             else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
+                speed = pauseAfterDeleting;
             }
 
             setTimeout(typeWriter, speed);
