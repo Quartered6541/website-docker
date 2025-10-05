@@ -8,12 +8,17 @@
 </head>
 <body class="d-flex flex-column" style="min-height: 100vh;">
     <header class="Header" id="main-header" style="position: sticky; top: 0; z-index: 1000; transition: transform 0.3s ease-in-out; background-color: #ffffff; border-top: 3px solid #0969da; border-bottom: 1px solid #d0d7de; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
-        <div class="px-4 py-3">
+        <div class="px-4 py-3 d-flex flex-justify-between flex-items-center">
             <div class="d-inline-block px-3 py-2" style="background-color: #ffffff; border: 1px solid #d0d7de; border-radius: 6px;">
                 <h1 class="h3 m-0">Docker Tutorial</h1>
             </div>
+            <button id="burger-menu" class="btn" style="display: none;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
         </div>
-        <nav class="py-2" style="background-color: #ffffff;">
+        <nav class="py-2" id="desktop-nav" style="background-color: #ffffff;">
             <ul class="d-flex flex-wrap list-style-none p-0 m-0 flex-justify-center">
                 <li class="mr-2 mb-2"><a href="index.html" class="btn btn-primary btn-sm">Главная</a></li>
                 <li class="mr-2 mb-2"><a href="#" class="btn btn-sm">Что такое Docker</a></li>
@@ -25,6 +30,20 @@
                 <li class="mr-2 mb-2"><a href="#" class="btn btn-sm">Лучшие практики</a></li>
                 <li class="mr-2 mb-2"><a href="#" class="btn btn-sm">Решение проблем</a></li>
                 <li class="mr-2 mb-2"><a href="#" class="btn btn-sm">Ресурсы и документация</a></li>
+            </ul>
+        </nav>
+        <nav id="mobile-nav" style="display: none; background-color: #ffffff; border-top: 1px solid #d0d7de;">
+            <ul class="list-style-none p-0 m-0">
+                <li class="border-bottom" style="border-color: #d0d7de;"><a href="index.html" class="btn btn-primary" style="width: 100%; text-align: left; border-radius: 0;">Главная</a></li>
+                <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Что такое Docker</a></li>
+                <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Установка Docker</a></li>
+                <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Основные команды</a></li>
+                <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Создание образов (Dockerfile)</a></li>
+                <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Оркестрация контейнеров (Docker Compose)</a></li>
+                <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Примеры использования</a></li>
+                <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Лучшие практики</a></li>
+                <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Решение проблем</a></li>
+                <li><a href="#" class="btn" style="width: 100%; text-align: left; border-radius: 0;">Ресурсы и документация</a></li>
             </ul>
         </nav>
     </header>
@@ -56,6 +75,16 @@
 
         .Box-body ul {
             padding-left: 2rem;
+        }
+
+        /* Медиа-запрос для показа бургер-меню на узких экранах */
+        @media (max-width: 992px) {
+            #desktop-nav {
+                display: none !important;
+            }
+            #burger-menu {
+                display: block !important;
+            }
         }
     </style>
 
@@ -218,6 +247,20 @@
             }
 
             lastScrollTop = scrollTop;
+        });
+
+        // Управление бургер-меню
+        const burgerMenu = document.getElementById('burger-menu');
+        const mobileNav = document.getElementById('mobile-nav');
+        let isMenuOpen = false;
+
+        burgerMenu.addEventListener('click', function() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileNav.style.display = 'block';
+            } else {
+                mobileNav.style.display = 'none';
+            }
         });
 
         // Запуск анимации при загрузке страницы
