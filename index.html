@@ -29,123 +29,54 @@
 
     <div class="d-flex flex-row flex-1 px-4">
         <main class="p-4" style="flex: 3;">
+        <div class="text-center py-5">
+            <h1 class="h0-mktg mb-3">
+                Разрабатывайте <span id="typewriter"></span>
+            </h1>
+            <p class="lead text-gray mb-4">Платформа для создания, развертывания и запуска приложений в контейнерах</p>
+        </div>
+
         <div class="Box mb-4">
             <div class="Box-header">
                 <h2 class="Box-title">Что такое Docker?</h2>
             </div>
             <div class="Box-body">
-                <p>Docker — это платформа для разработки, доставки и запуска приложений в контейнерах. Контейнеры позволяют упаковать приложение со всеми его зависимостями в стандартизированную единицу для разработки ПО.</p>
-                <p>В отличие от виртуальных машин, контейнеры Docker используют ядро операционной системы хоста, что делает их более легковесными и быстрыми. Каждый контейнер работает как изолированный процесс в пространстве пользователя.</p>
-                <h3 class="h4 mt-3 mb-2">Основные компоненты Docker:</h3>
-                <ul>
-                    <li><strong>Docker Engine</strong> — основа платформы, которая создает и запускает контейнеры</li>
-                    <li><strong>Docker Image</strong> — шаблон только для чтения, содержащий инструкции для создания контейнера</li>
-                    <li><strong>Docker Container</strong> — запущенный экземпляр образа</li>
-                    <li><strong>Docker Hub</strong> — облачный реестр для хранения и распространения образов</li>
-                    <li><strong>Dockerfile</strong> — текстовый файл с инструкциями для создания образа</li>
+                <p>Docker — это открытая платформа для разработки, доставки и запуска приложений. Docker позволяет отделить приложения от инфраструктуры, что дает возможность быстро развертывать программное обеспечение. С помощью Docker вы можете управлять своей инфраструктурой так же, как управляете приложениями.</p>
+                <p>Контейнеры Docker упаковывают приложение со всеми его зависимостями в стандартизированную единицу для разработки ПО. Контейнер включает все необходимое для запуска: код, среду выполнения, системные инструменты, библиотеки и настройки.</p>
+                <p>В отличие от виртуальных машин, контейнеры Docker используют ядро операционной системы хоста, что делает их значительно более легковесными и быстрыми в запуске. Каждый контейнер работает как изолированный процесс в пространстве пользователя хостовой операционной системы.</p>
+            </div>
+        </div>
+
+        <div class="Box mb-4">
+            <div class="Box-header">
+                <h2 class="Box-title">Почему Docker?</h2>
+            </div>
+            <div class="Box-body">
+                <p>Docker революционизировал способ разработки и развертывания приложений, предлагая ряд преимуществ, которые делают его незаменимым инструментом современной разработки:</p>
+                <ul class="mt-3">
+                    <li class="mb-2"><strong>Портативность и согласованность окружения</strong> — "Работает на моей машине" больше не проблема. Контейнер, который работает на вашей локальной машине, будет работать точно так же на сервере продакшена.</li>
+                    <li class="mb-2"><strong>Эффективное использование ресурсов</strong> — контейнеры потребляют меньше ресурсов по сравнению с виртуальными машинами, позволяя запускать больше приложений на том же оборудовании.</li>
+                    <li class="mb-2"><strong>Быстрое развертывание</strong> — контейнеры запускаются за секунды, что значительно ускоряет процессы разработки, тестирования и развертывания.</li>
+                    <li class="mb-2"><strong>Изоляция приложений</strong> — каждое приложение работает в собственном изолированном окружении, что повышает безопасность и предотвращает конфликты зависимостей.</li>
+                    <li class="mb-2"><strong>Масштабируемость</strong> — легко создавать и управлять множеством экземпляров приложения для обработки возрастающей нагрузки.</li>
+                    <li class="mb-2"><strong>Версионность и откат</strong> — образы Docker имеют версии, что позволяет легко откатываться к предыдущим версиям приложения.</li>
                 </ul>
             </div>
         </div>
 
         <div class="Box mb-4">
             <div class="Box-header">
-                <h2 class="Box-title">Преимущества Docker</h2>
+                <h2 class="Box-title">Где используется Docker?</h2>
             </div>
             <div class="Box-body">
-                <p>Docker обеспечивает изоляцию приложений, упрощает развертывание, гарантирует согласованность окружения на разных этапах разработки и позволяет эффективно использовать ресурсы системы.</p>
-                <h3 class="h4 mt-3 mb-2">Ключевые преимущества:</h3>
-                <ol>
-                    <li><strong>Портативность</strong> — контейнер работает одинаково на любой платформе: локальной машине, сервере, облаке</li>
-                    <li><strong>Легковесность</strong> — контейнеры запускаются за секунды и потребляют минимум ресурсов</li>
-                    <li><strong>Изоляция</strong> — каждое приложение работает в собственном изолированном окружении</li>
-                    <li><strong>Масштабируемость</strong> — легко создавать множество экземпляров приложения</li>
-                    <li><strong>Версионность</strong> — образы Docker имеют версии, что упрощает откат изменений</li>
-                    <li><strong>Совместимость</strong> — работает на Linux, Windows, macOS</li>
-                </ol>
-            </div>
-        </div>
-
-        <div class="Box mb-4">
-            <div class="Box-header">
-                <h2 class="Box-title">Начало работы</h2>
-            </div>
-            <div class="Box-body">
-                <p>Для начала работы с Docker необходимо установить Docker Engine на вашу систему. Процесс установки различается в зависимости от операционной системы: Linux, Windows или macOS.</p>
-                <h3 class="h4 mt-3 mb-2">Системные требования:</h3>
-                <ul>
-                    <li>64-битная операционная система</li>
-                    <li>Минимум 4 ГБ оперативной памяти (рекомендуется 8 ГБ)</li>
-                    <li>Поддержка виртуализации на уровне процессора</li>
-                    <li>Свободное место на диске (минимум 20 ГБ)</li>
+                <p>Docker применяется в различных сценариях разработки и эксплуатации программного обеспечения:</p>
+                <ul class="mt-3">
+                    <li class="mb-2"><strong>Микросервисная архитектура</strong> — каждый микросервис упаковывается в отдельный контейнер, что упрощает разработку и масштабирование.</li>
+                    <li class="mb-2"><strong>Continuous Integration/Continuous Deployment (CI/CD)</strong> — Docker обеспечивает согласованность окружения на всех этапах pipeline.</li>
+                    <li class="mb-2"><strong>Локальная разработка</strong> — разработчики могут запускать полную копию продакшн-окружения на своих машинах.</li>
+                    <li class="mb-2"><strong>Тестирование</strong> — быстрое создание и уничтожение изолированных окружений для тестирования.</li>
+                    <li class="mb-2"><strong>Облачные развертывания</strong> — контейнеры идеально подходят для развертывания в облачных платформах (AWS, Azure, Google Cloud).</li>
                 </ul>
-                <h3 class="h4 mt-3 mb-2">Первые шаги после установки:</h3>
-                <p>После успешной установки Docker, вы можете проверить его работу командой:</p>
-                <div class="p-3 bg-gray-light">
-                    <code>docker --version</code>
-                </div>
-                <p class="mt-2">Для запуска первого контейнера выполните:</p>
-                <div class="p-3 bg-gray-light">
-                    <code>docker run hello-world</code>
-                </div>
-            </div>
-        </div>
-
-        <div class="Box mb-4">
-            <div class="Box-header">
-                <h2 class="Box-title">Основные команды Docker</h2>
-            </div>
-            <div class="Box-body">
-                <p>Таблица наиболее используемых команд Docker для работы с контейнерами и образами:</p>
-                <table class="mt-3" style="width: 100%; border-collapse: collapse;">
-                    <thead>
-                        <tr style="background-color: #f6f8fa; border-bottom: 2px solid #d0d7de;">
-                            <th style="padding: 8px; text-align: left; border: 1px solid #d0d7de;">Команда</th>
-                            <th style="padding: 8px; text-align: left; border: 1px solid #d0d7de;">Описание</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom: 1px solid #d0d7de;">
-                            <td style="padding: 8px; border: 1px solid #d0d7de;"><code>docker pull</code></td>
-                            <td style="padding: 8px; border: 1px solid #d0d7de;">Загрузить образ из реестра</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #d0d7de;">
-                            <td style="padding: 8px; border: 1px solid #d0d7de;"><code>docker run</code></td>
-                            <td style="padding: 8px; border: 1px solid #d0d7de;">Создать и запустить контейнер из образа</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #d0d7de;">
-                            <td style="padding: 8px; border: 1px solid #d0d7de;"><code>docker ps</code></td>
-                            <td style="padding: 8px; border: 1px solid #d0d7de;">Показать запущенные контейнеры</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #d0d7de;">
-                            <td style="padding: 8px; border: 1px solid #d0d7de;"><code>docker stop</code></td>
-                            <td style="padding: 8px; border: 1px solid #d0d7de;">Остановить контейнер</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #d0d7de;">
-                            <td style="padding: 8px; border: 1px solid #d0d7de;"><code>docker rm</code></td>
-                            <td style="padding: 8px; border: 1px solid #d0d7de;">Удалить контейнер</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #d0d7de;">
-                            <td style="padding: 8px; border: 1px solid #d0d7de;"><code>docker images</code></td>
-                            <td style="padding: 8px; border: 1px solid #d0d7de;">Показать список образов</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 8px; border: 1px solid #d0d7de;"><code>docker build</code></td>
-                            <td style="padding: 8px; border: 1px solid #d0d7de;">Создать образ из Dockerfile</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="Box mb-4">
-            <div class="Box-header">
-                <h2 class="Box-title">Видео-введение в Docker</h2>
-            </div>
-            <div class="Box-body">
-                <p>Посмотрите это видео для быстрого введения в основные концепции Docker:</p>
-                <div class="mt-3" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/Gjnup-PuquQ" title="Docker Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
             </div>
         </div>
         </main>
@@ -202,5 +133,49 @@
     <footer class="bg-gray-dark text-white p-4 text-center">
         <p class="m-0">&copy; 2025 Docker Tutorial</p>
     </footer>
+
+    <script>
+        // Эффект печатной машинки для меняющихся слов
+        const words = ['приложения', 'быстрее', 'контейнеры', 'эффективно'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById('typewriter');
+        const typingSpeed = 150;
+        const deletingSpeed = 100;
+        const pauseBetweenWords = 2000;
+
+        function typeWriter() {
+            const currentWord = words[wordIndex];
+
+            if (isDeleting) {
+                // Удаляем символы
+                typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                // Добавляем символы
+                typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? deletingSpeed : typingSpeed;
+
+            // Если слово полностью напечатано
+            if (!isDeleting && charIndex === currentWord.length) {
+                speed = pauseBetweenWords;
+                isDeleting = true;
+            }
+            // Если слово полностью удалено
+            else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+
+            setTimeout(typeWriter, speed);
+        }
+
+        // Запуск анимации при загрузке страницы
+        document.addEventListener('DOMContentLoaded', typeWriter);
+    </script>
 </body>
 </html>
