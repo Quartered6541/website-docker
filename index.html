@@ -8,16 +8,16 @@
 </head>
 <body class="d-flex flex-column" style="min-height: 100vh;">
     <header class="Header" id="main-header" style="position: sticky; top: 0; z-index: 1000; transition: transform 0.3s ease-in-out; background-color: #ffffff; border-top: 3px solid #0969da; border-bottom: 1px solid #d0d7de; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
-        <div class="py-3" style="padding-left: 1rem; padding-right: 1rem; position: relative;">
+        <div class="py-3" style="padding-left: 1rem; padding-right: 1rem;">
             <div class="d-inline-block px-3 py-2" style="background-color: #ffffff; border: 1px solid #d0d7de; border-radius: 6px;">
                 <h1 class="h3 m-0">Docker Tutorial</h1>
             </div>
-            <button id="burger-menu" class="btn" style="display: none; position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button>
         </div>
+        <button id="burger-menu" class="btn" style="display: none; position: absolute; right: 1rem; top: 1.5rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
         <nav class="py-2" id="desktop-nav" style="background-color: #ffffff;">
             <ul class="d-flex flex-wrap list-style-none p-0 m-0 flex-justify-center">
                 <li class="mr-2 mb-2"><a href="index.html" class="btn btn-primary btn-sm">Главная</a></li>
