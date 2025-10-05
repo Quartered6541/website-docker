@@ -1,0 +1,71 @@
+/* Анимация курсора печатной машинки */
+.cursor {
+    display: inline-block;
+    animation: blink 0.7s infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Отступы для списков в Box */
+.Box-body ul {
+    padding-left: 2rem;
+}
+
+/* Медиа-запрос для показа бургер-меню на узких экранах */
+@media (max-width: 1300px) {
+    #desktop-nav {
+        display: none !important;
+    }
+    #burger-menu {
+        display: block !important;
+    }
+}
+
+/* Скрываем мобильное меню на широких экранах */
+@media (min-width: 1301px) {
+    #mobile-nav {
+        display: none !important;
+    }
+}
+
+/* Эффект изгиба вниз для голубого фона */
+#content-section::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 0;
+    right: 0;
+    height: 140px;
+    background-color: #ffffff;
+    border-bottom-left-radius: 50% 100px;
+    border-bottom-right-radius: 50% 100px;
+}
+
+/* Стилизация мобильного меню */
+.mobile-menu-item:hover {
+    background-color: rgba(9, 105, 218, 0.1);
+    box-shadow: 0 0 15px rgba(9, 105, 218, 0.3);
+    color: #0969da !important;
+}
+
+/* Стилизация обычных кнопок навигации */
+#desktop-nav .btn {
+    transition: all 0.3s ease;
+}
+
+#desktop-nav .btn:hover {
+    box-shadow: 0 0 15px rgba(9, 105, 218, 0.4);
+    transform: translateY(-2px);
+}
+
+#desktop-nav .btn-primary:hover {
+    box-shadow: 0 0 20px rgba(9, 105, 218, 0.6);
+}

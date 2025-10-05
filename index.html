@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker - Контейнеризация веб-приложений</title>
     <link href="https://unpkg.com/@primer/css@^21.0.0/dist/primer.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column" style="min-height: 100vh;">
     <header class="Header" id="main-header" style="position: sticky; top: 0; z-index: 1000; transition: transform 0.3s ease-in-out; background-color: #ffffff; border-top: 3px solid #0969da; border-bottom: 1px solid #d0d7de; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
@@ -57,78 +58,6 @@
             <p class="lead text-gray mb-4">Платформа для создания, развертывания и запуска приложений в контейнерах</p>
         </div>
     </div>
-
-    <style>
-        .cursor {
-            display: inline-block;
-            animation: blink 0.7s infinite;
-            margin-left: 2px;
-        }
-
-        @keyframes blink {
-            0%, 50% {
-                opacity: 1;
-            }
-            51%, 100% {
-                opacity: 0;
-            }
-        }
-
-        .Box-body ul {
-            padding-left: 2rem;
-        }
-
-        /* Медиа-запрос для показа бургер-меню на узких экранах */
-        @media (max-width: 1300px) {
-            #desktop-nav {
-                display: none !important;
-            }
-            #burger-menu {
-                display: block !important;
-            }
-        }
-
-        /* Скрываем мобильное меню на широких экранах */
-        @media (min-width: 1301px) {
-            #mobile-nav {
-                display: none !important;
-            }
-        }
-
-        /* Эффект изгиба вниз для голубого фона */
-        #content-section::before {
-            content: '';
-            position: absolute;
-            top: -60px;
-            left: 0;
-            right: 0;
-            height: 140px;
-            background-color: #ffffff;
-            border-bottom-left-radius: 50% 100px;
-            border-bottom-right-radius: 50% 100px;
-        }
-
-        /* Стилизация мобильного меню */
-        .mobile-menu-item:hover {
-            background-color: rgba(9, 105, 218, 0.1);
-            box-shadow: 0 0 15px rgba(9, 105, 218, 0.3);
-            color: #0969da !important;
-        }
-
-        /* Стилизация обычных кнопок навигации */
-        #desktop-nav .btn {
-            transition: all 0.3s ease;
-        }
-
-        #desktop-nav .btn:hover {
-            box-shadow: 0 0 15px rgba(9, 105, 218, 0.4);
-            transform: translateY(-2px);
-        }
-
-        #desktop-nav .btn-primary:hover {
-            box-shadow: 0 0 20px rgba(9, 105, 218, 0.6);
-        }
-    </style>
 
     <div class="flex-1 px-4" id="content-section" style="background-color: #f6f8fa; position: relative; padding-top: 70px;">
         <main class="p-4">
@@ -239,97 +168,6 @@
         <p class="m-0">&copy; 2025 Docker Tutorial</p>
     </footer>
 
-    <script>
-        // Эффект печатной машинки для меняющихся слов
-        const words = ['приложения', 'быстрее', 'контейнеры', 'эффективно'];
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typewriterElement = document.getElementById('typewriter');
-        const typingSpeed = 150;
-        const deletingSpeed = 100;
-        const pauseBetweenWords = 2000;
-        const pauseAfterDeleting = 500;
-
-        function typeWriter() {
-            const currentWord = words[wordIndex];
-
-            if (isDeleting) {
-                // Удаляем символы
-                typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                // Добавляем символы
-                typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let speed = isDeleting ? deletingSpeed : typingSpeed;
-
-            // Если слово полностью напечатано
-            if (!isDeleting && charIndex === currentWord.length) {
-                speed = pauseBetweenWords;
-                isDeleting = true;
-            }
-            // Если слово полностью удалено
-            else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-                speed = pauseAfterDeleting;
-            }
-
-            setTimeout(typeWriter, speed);
-        }
-
-        // Скрытие/показ header при прокрутке
-        let lastScrollTop = 0;
-        const header = document.getElementById('main-header');
-        const mobileNavElement = document.getElementById('mobile-nav');
-
-        window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                // Прокрутка вниз - скрываем header и мобильное меню
-                header.style.transform = 'translateY(-100%)';
-                if (mobileNavElement.style.display === 'block') {
-                    mobileNavElement.style.transform = 'translateY(-100%)';
-                }
-            } else {
-                // Прокрутка вверх - показываем header
-                header.style.transform = 'translateY(0)';
-                if (mobileNavElement.style.display === 'block') {
-                    mobileNavElement.style.transform = 'translateY(0)';
-                }
-            }
-
-            lastScrollTop = scrollTop;
-        });
-
-        // Управление бургер-меню
-        const burgerMenu = document.getElementById('burger-menu');
-        const mobileNav = document.getElementById('mobile-nav');
-        let isMenuOpen = false;
-
-        burgerMenu.addEventListener('click', function() {
-            isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) {
-                mobileNav.style.display = 'block';
-            } else {
-                mobileNav.style.display = 'none';
-            }
-        });
-
-        // Закрытие мобильного меню при изменении размера окна
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 1300 && isMenuOpen) {
-                mobileNav.style.display = 'none';
-                isMenuOpen = false;
-            }
-        });
-
-        // Запуск анимации при загрузке страницы
-        document.addEventListener('DOMContentLoaded', typeWriter);
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
