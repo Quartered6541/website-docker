@@ -86,5 +86,58 @@ window.addEventListener('resize', function() {
     }
 });
 
-// Запуск анимации при загрузке страницы
-document.addEventListener('DOMContentLoaded', typeWriter);
+// Управление выпадающими меню
+document.addEventListener('DOMContentLoaded', function() {
+    // Запуск анимации печатной машинки
+    typeWriter();
+
+    // Получаем все кнопки выпадающих меню
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+    dropdownToggles.forEach(function(toggle) {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdown = this.parentElement;
+            const menu = dropdown.querySelector('.dropdown-menu');
+
+            // Закрываем все остальные меню
+            document.querySelectorAll('.dropdown-menu.show').forEach(function(openMenu) {
+                if (openMenu !== menu) {
+                    openMenu.classList.remove('show');
+                }
+            });
+
+            // Переключаем текущее меню
+            menu.classList.toggle('show');
+        });
+    });
+
+    // Закрытие меню при клике вне его
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown-menu.show').forEach(function(menu) {
+                menu.classList.remove('show');
+            });
+        }
+    });
+
+    // Управление мобильными выпадающими меню
+    const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+
+    mobileDropdownToggles.forEach(function(toggle) {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdownMenu = this.nextElementSibling;
+            const arrow = this.querySelector('span');
+
+            // Переключаем видимость подменю
+            if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
+                dropdownMenu.style.display = 'block';
+                arrow.textContent = '▲';
+            } else {
+                dropdownMenu.style.display = 'none';
+                arrow.textContent = '▼';
+            }
+        });
+    });
+});
