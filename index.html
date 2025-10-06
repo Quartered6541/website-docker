@@ -22,14 +22,36 @@
         <nav class="py-2" id="desktop-nav" style="background-color: #ffffff;">
             <ul class="d-flex flex-wrap list-style-none p-0 m-0 flex-justify-center">
                 <li class="mr-2 mb-2"><a href="index.html" class="btn btn-primary btn-sm">Главная</a></li>
-                <li class="mr-2 mb-2"><a href="#" class="btn btn-sm">Что такое Docker</a></li>
-                <li class="mr-2 mb-2"><a href="#" class="btn btn-sm">Установка Docker</a></li>
-                <li class="mr-2 mb-2"><a href="#" class="btn btn-sm">Основные команды</a></li>
-                <li class="mr-2 mb-2"><a href="#" class="btn btn-sm">Создание образов (Dockerfile)</a></li>
-                <li class="mr-2 mb-2"><a href="#" class="btn btn-sm">Оркестрация контейнеров (Docker Compose)</a></li>
-                <li class="mr-2 mb-2"><a href="#" class="btn btn-sm">Примеры использования</a></li>
-                <li class="mr-2 mb-2"><a href="#" class="btn btn-sm">Лучшие практики</a></li>
-                <li class="mr-2 mb-2"><a href="#" class="btn btn-sm">Решение проблем</a></li>
+
+                <!-- Выпадающее меню: Основы -->
+                <li class="mr-2 mb-2 dropdown">
+                    <button class="btn btn-sm dropdown-toggle">Основы</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Что такое Docker</a></li>
+                        <li><a href="#">Установка Docker</a></li>
+                    </ul>
+                </li>
+
+                <!-- Выпадающее меню: Работа с Docker -->
+                <li class="mr-2 mb-2 dropdown">
+                    <button class="btn btn-sm dropdown-toggle">Работа с Docker</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Основные команды</a></li>
+                        <li><a href="#">Создание образов (Dockerfile)</a></li>
+                        <li><a href="#">Оркестрация контейнеров (Docker Compose)</a></li>
+                    </ul>
+                </li>
+
+                <!-- Выпадающее меню: Практика -->
+                <li class="mr-2 mb-2 dropdown">
+                    <button class="btn btn-sm dropdown-toggle">Практика</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Примеры использования</a></li>
+                        <li><a href="#">Лучшие практики</a></li>
+                        <li><a href="#">Решение проблем</a></li>
+                    </ul>
+                </li>
+
                 <li class="mr-2 mb-2"><a href="#" class="btn btn-sm">Ресурсы и документация</a></li>
             </ul>
         </nav>
@@ -38,14 +60,42 @@
     <nav id="mobile-nav" style="display: none; background-color: #ffffff; border-bottom: 1px solid #d0d7de; position: sticky; top: 0; z-index: 999; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out;">
         <ul class="list-style-none p-0 m-0">
             <li class="border-bottom" style="border-color: #d0d7de;"><a href="index.html" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #0969da; font-weight: 600; transition: all 0.3s ease;">Главная</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Что такое Docker</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Установка Docker</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Основные команды</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Создание образов (Dockerfile)</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Оркестрация контейнеров (Docker Compose)</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Примеры использования</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Лучшие практики</a></li>
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Решение проблем</a></li>
+
+            <!-- Группа: Основы -->
+            <li class="border-bottom mobile-dropdown" style="border-color: #d0d7de;">
+                <button class="mobile-dropdown-toggle" style="display: block; width: 100%; padding: 1rem; text-align: left; background: none; border: none; color: #24292f; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;">
+                    Основы <span style="float: right;">▼</span>
+                </button>
+                <ul class="mobile-dropdown-menu" style="display: none; background-color: #f6f8fa; list-style: none; padding: 0; margin: 0;">
+                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Что такое Docker</a></li>
+                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Установка Docker</a></li>
+                </ul>
+            </li>
+
+            <!-- Группа: Работа с Docker -->
+            <li class="border-bottom mobile-dropdown" style="border-color: #d0d7de;">
+                <button class="mobile-dropdown-toggle" style="display: block; width: 100%; padding: 1rem; text-align: left; background: none; border: none; color: #24292f; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;">
+                    Работа с Docker <span style="float: right;">▼</span>
+                </button>
+                <ul class="mobile-dropdown-menu" style="display: none; background-color: #f6f8fa; list-style: none; padding: 0; margin: 0;">
+                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Основные команды</a></li>
+                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Создание образов (Dockerfile)</a></li>
+                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Оркестрация контейнеров (Docker Compose)</a></li>
+                </ul>
+            </li>
+
+            <!-- Группа: Практика -->
+            <li class="border-bottom mobile-dropdown" style="border-color: #d0d7de;">
+                <button class="mobile-dropdown-toggle" style="display: block; width: 100%; padding: 1rem; text-align: left; background: none; border: none; color: #24292f; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;">
+                    Практика <span style="float: right;">▼</span>
+                </button>
+                <ul class="mobile-dropdown-menu" style="display: none; background-color: #f6f8fa; list-style: none; padding: 0; margin: 0;">
+                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Примеры использования</a></li>
+                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Лучшие практики</a></li>
+                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Решение проблем</a></li>
+                </ul>
+            </li>
+
             <li><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Ресурсы и документация</a></li>
         </ul>
     </nav>
