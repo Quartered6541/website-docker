@@ -88,8 +88,10 @@ window.addEventListener('resize', function() {
 
 // Управление выпадающими меню
 document.addEventListener('DOMContentLoaded', function() {
-    // Запуск анимации печатной машинки
-    typeWriter();
+    // Запуск анимации печатной машинки только если элемент существует
+    if (typewriterElement) {
+        typeWriter();
+    }
 
     // Получаем все кнопки выпадающих меню
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
