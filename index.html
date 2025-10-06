@@ -7,19 +7,19 @@
     <link href="https://unpkg.com/@primer/css@^21.0.0/dist/primer.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 </head>
-<body class="d-flex flex-column" style="min-height: 100vh;">
-    <header class="Header" id="main-header" style="position: sticky; top: 0; z-index: 1000; transition: transform 0.3s ease-in-out; background-color: #ffffff; border-top: 3px solid #0969da; border-bottom: 1px solid #d0d7de; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
-        <div class="py-3" style="padding-left: 1rem; padding-right: 1rem;">
-            <div class="d-inline-block px-3 py-2" style="background-color: #ffffff; border: 1px solid #d0d7de; border-radius: 6px;">
+<body class="d-flex flex-column body-wrapper">
+    <header class="Header main-header" id="main-header">
+        <div class="py-3 header-container">
+            <div class="d-inline-block px-3 py-2 header-logo-box">
                 <h1 class="h3 m-0">Docker Tutorial</h1>
             </div>
         </div>
-        <button id="burger-menu" class="btn" style="display: none; position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); border: none; box-shadow: none;">
+        <button id="burger-menu" class="btn burger-menu-btn">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
         </button>
-        <nav class="py-2" id="desktop-nav" style="background-color: #ffffff;">
+        <nav class="py-2 desktop-navigation" id="desktop-nav">
             <ul class="d-flex flex-wrap list-style-none p-0 m-0 flex-justify-center">
                 <li class="mr-2 mb-2"><a href="index.html" class="btn btn-primary btn-sm">Главная</a></li>
 
@@ -57,51 +57,51 @@
         </nav>
     </header>
 
-    <nav id="mobile-nav" style="display: none; background-color: #ffffff; border-bottom: 1px solid #d0d7de; position: sticky; top: 0; z-index: 999; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out;">
+    <nav id="mobile-nav" class="mobile-navigation">
         <ul class="list-style-none p-0 m-0">
-            <li class="border-bottom" style="border-color: #d0d7de;"><a href="index.html" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #0969da; font-weight: 600; transition: all 0.3s ease;">Главная</a></li>
+            <li class="border-bottom mobile-menu-border"><a href="index.html" class="mobile-menu-item">Главная</a></li>
 
             <!-- Группа: Основы -->
-            <li class="border-bottom mobile-dropdown" style="border-color: #d0d7de;">
-                <button class="mobile-dropdown-toggle" style="display: block; width: 100%; padding: 1rem; text-align: left; background: none; border: none; color: #24292f; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;">
-                    Основы <span style="float: right;">▼</span>
+            <li class="border-bottom mobile-dropdown mobile-menu-border">
+                <button class="mobile-dropdown-toggle">
+                    Основы <span class="mobile-dropdown-arrow">▼</span>
                 </button>
-                <ul class="mobile-dropdown-menu" style="display: none; background-color: #f6f8fa; list-style: none; padding: 0; margin: 0;">
-                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Что такое Docker</a></li>
-                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Установка Docker</a></li>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="#" class="mobile-submenu-item">Что такое Docker</a></li>
+                    <li><a href="#" class="mobile-submenu-item">Установка Docker</a></li>
                 </ul>
             </li>
 
             <!-- Группа: Работа с Docker -->
-            <li class="border-bottom mobile-dropdown" style="border-color: #d0d7de;">
-                <button class="mobile-dropdown-toggle" style="display: block; width: 100%; padding: 1rem; text-align: left; background: none; border: none; color: #24292f; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;">
-                    Работа с Docker <span style="float: right;">▼</span>
+            <li class="border-bottom mobile-dropdown mobile-menu-border">
+                <button class="mobile-dropdown-toggle">
+                    Работа с Docker <span class="mobile-dropdown-arrow">▼</span>
                 </button>
-                <ul class="mobile-dropdown-menu" style="display: none; background-color: #f6f8fa; list-style: none; padding: 0; margin: 0;">
-                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Основные команды</a></li>
-                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Создание образов (Dockerfile)</a></li>
-                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Оркестрация контейнеров (Docker Compose)</a></li>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="#" class="mobile-submenu-item">Основные команды</a></li>
+                    <li><a href="#" class="mobile-submenu-item">Создание образов (Dockerfile)</a></li>
+                    <li><a href="#" class="mobile-submenu-item">Оркестрация контейнеров (Docker Compose)</a></li>
                 </ul>
             </li>
 
             <!-- Группа: Практика -->
-            <li class="border-bottom mobile-dropdown" style="border-color: #d0d7de;">
-                <button class="mobile-dropdown-toggle" style="display: block; width: 100%; padding: 1rem; text-align: left; background: none; border: none; color: #24292f; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;">
-                    Практика <span style="float: right;">▼</span>
+            <li class="border-bottom mobile-dropdown mobile-menu-border">
+                <button class="mobile-dropdown-toggle">
+                    Практика <span class="mobile-dropdown-arrow">▼</span>
                 </button>
-                <ul class="mobile-dropdown-menu" style="display: none; background-color: #f6f8fa; list-style: none; padding: 0; margin: 0;">
-                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Примеры использования</a></li>
-                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Лучшие практики</a></li>
-                    <li><a href="#" class="mobile-menu-item" style="display: block; padding: 0.75rem 1rem 0.75rem 2rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Решение проблем</a></li>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="#" class="mobile-submenu-item">Примеры использования</a></li>
+                    <li><a href="#" class="mobile-submenu-item">Лучшие практики</a></li>
+                    <li><a href="#" class="mobile-submenu-item">Решение проблем</a></li>
                 </ul>
             </li>
 
-            <li><a href="#" class="mobile-menu-item" style="display: block; padding: 1rem; text-decoration: none; color: #24292f; transition: all 0.3s ease;">Ресурсы и документация</a></li>
+            <li><a href="#" class="mobile-menu-item-secondary">Ресурсы и документация</a></li>
         </ul>
     </nav>
 
     <div class="px-4">
-        <div class="text-center" style="padding-top: 5rem; padding-bottom: 3rem;">
+        <div class="text-center hero-section">
             <h1 class="h0-mktg mb-3">
                 Разрабатывайте <span id="typewriter"></span><span class="cursor">|</span>
             </h1>
@@ -109,7 +109,7 @@
         </div>
     </div>
 
-    <div class="flex-1 px-4" id="content-section" style="background-color: #f6f8fa; position: relative; padding-top: 70px;">
+    <div class="flex-1 px-4 content-section" id="content-section">
         <main class="p-4">
 
         <div class="Box mb-4">
@@ -158,8 +158,8 @@
         </main>
 
         <aside class="p-4">
-            <div class="d-flex flex-wrap" style="gap: 1.5rem;">
-                <div style="flex: 1 1 300px;">
+            <div class="d-flex flex-wrap sidebar-container">
+                <div class="sidebar-item">
                     <div class="Box">
                         <div class="Box-header">
                             <h2 class="Box-title">Быстрые ссылки</h2>
@@ -174,7 +174,7 @@
                     </div>
                 </div>
 
-                <div style="flex: 1 1 300px;">
+                <div class="sidebar-item">
                     <div class="Box">
                         <div class="Box-header">
                             <h2 class="Box-title">Полезные ресурсы</h2>
@@ -189,7 +189,7 @@
                     </div>
                 </div>
 
-                <div style="flex: 1 1 300px;">
+                <div class="sidebar-item">
                     <div class="Box">
                         <div class="Box-header">
                             <h2 class="Box-title">Подписка на новости</h2>
@@ -199,11 +199,11 @@
                             <form>
                                 <div class="mb-3">
                                     <label for="email" class="form-label d-block mb-1">Email адрес</label>
-                                    <input type="email" id="email" class="form-control input-block" placeholder="your@email.com" style="background-color: #ffffff; border: 1px solid #d0d7de;" required>
+                                    <input type="email" id="email" class="form-control input-block form-input-custom" placeholder="your@email.com" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="name" class="form-label d-block mb-1">Имя</label>
-                                    <input type="text" id="name" class="form-control input-block" placeholder="Ваше имя" style="background-color: #ffffff; border: 1px solid #d0d7de;" required>
+                                    <input type="text" id="name" class="form-control input-block form-input-custom" placeholder="Ваше имя" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block">Подписаться</button>
                             </form>
@@ -214,39 +214,39 @@
         </aside>
     </div>
 
-    <footer class="p-4" style="background-color: #0969da; color: #ffffff;">
+    <footer class="p-4 footer-main">
         <div class="container-lg">
-            <div class="d-flex flex-wrap flex-justify-between" style="gap: 2rem;">
+            <div class="d-flex flex-wrap flex-justify-between footer-gap">
                 <!-- Колонка 1: О проекте -->
-                <div style="flex: 1; min-width: 200px;">
+                <div class="footer-column">
                     <h3 class="h4 mb-3">Docker Tutorial</h3>
-                    <p style="color: #ffffff; opacity: 0.9;">Образовательный ресурс по контейнеризации и Docker для разработчиков</p>
+                    <p class="footer-text">Образовательный ресурс по контейнеризации и Docker для разработчиков</p>
                 </div>
 
                 <!-- Колонка 2: Полезные ссылки -->
-                <div style="flex: 1; min-width: 200px;">
+                <div class="footer-column">
                     <h4 class="h5 mb-3">Полезные ссылки</h4>
                     <ul class="list-style-none pl-0">
-                        <li class="mb-2"><a href="https://docs.docker.com" style="color: #ffffff; opacity: 0.9; text-decoration: none;" target="_blank">Официальная документация</a></li>
-                        <li class="mb-2"><a href="https://hub.docker.com" style="color: #ffffff; opacity: 0.9; text-decoration: none;" target="_blank">Docker Hub</a></li>
-                        <li class="mb-2"><a href="https://github.com/docker" style="color: #ffffff; opacity: 0.9; text-decoration: none;" target="_blank">GitHub Docker</a></li>
+                        <li class="mb-2"><a href="https://docs.docker.com" class="footer-link" target="_blank">Официальная документация</a></li>
+                        <li class="mb-2"><a href="https://hub.docker.com" class="footer-link" target="_blank">Docker Hub</a></li>
+                        <li class="mb-2"><a href="https://github.com/docker" class="footer-link" target="_blank">GitHub Docker</a></li>
                     </ul>
                 </div>
 
                 <!-- Колонка 3: Контакты -->
-                <div style="flex: 1; min-width: 200px;">
+                <div class="footer-column">
                     <h4 class="h5 mb-3">Контакты</h4>
                     <ul class="list-style-none pl-0">
-                        <li class="mb-2" style="color: #ffffff; opacity: 0.9;">Email: info@dockertutorial.ru</li>
-                        <li class="mb-2" style="color: #ffffff; opacity: 0.9;">Telegram: @dockertutorial</li>
-                        <li class="mb-2" style="color: #ffffff; opacity: 0.9;">GitHub: github.com/dockertutorial</li>
+                        <li class="mb-2 footer-text">Email: info@dockertutorial.ru</li>
+                        <li class="mb-2 footer-text">Telegram: @dockertutorial</li>
+                        <li class="mb-2 footer-text">GitHub: github.com/dockertutorial</li>
                     </ul>
                 </div>
             </div>
 
             <!-- Копирайт -->
-            <div class="text-center mt-4 pt-3" style="border-top: 1px solid rgba(255, 255, 255, 0.2);">
-                <p class="m-0" style="color: #ffffff; opacity: 0.9;">&copy; 2025 Docker Tutorial. Все права защищены.</p>
+            <div class="text-center mt-4 pt-3 footer-divider">
+                <p class="m-0 footer-text">&copy; 2025 Docker Tutorial. Все права защищены.</p>
             </div>
         </div>
     </footer>

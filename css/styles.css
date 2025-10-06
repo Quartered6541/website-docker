@@ -14,6 +14,205 @@
     }
 }
 
+/* Базовые стили body */
+.body-wrapper {
+    min-height: 100vh;
+}
+
+/* Стили header */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    background-color: #ffffff;
+    border-top: 3px solid #0969da;
+    border-bottom: 1px solid #d0d7de;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.header-logo-box {
+    background-color: #ffffff;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+}
+
+/* Бургер-меню */
+.burger-menu-btn {
+    display: none;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    box-shadow: none;
+}
+
+/* Навигация */
+.desktop-navigation {
+    background-color: #ffffff;
+}
+
+.mobile-navigation {
+    display: none;
+    background-color: #ffffff;
+    border-bottom: 1px solid #d0d7de;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Мобильное меню */
+.mobile-menu-border {
+    border-color: #d0d7de;
+}
+
+.mobile-menu-item {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    color: #0969da;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-item-secondary {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    color: #24292f;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-item:hover {
+    background-color: rgba(9, 105, 218, 0.1);
+    box-shadow: 0 0 15px rgba(9, 105, 218, 0.3);
+    color: #0969da !important;
+}
+
+.mobile-menu-item-secondary:hover {
+    background-color: rgba(9, 105, 218, 0.1);
+    box-shadow: 0 0 15px rgba(9, 105, 218, 0.3);
+    color: #0969da !important;
+}
+
+.mobile-dropdown-toggle {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    text-align: left;
+    background: none;
+    border: none;
+    color: #24292f;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mobile-dropdown-arrow {
+    float: right;
+}
+
+.mobile-dropdown-menu {
+    display: none;
+    background-color: #f6f8fa;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-submenu-item {
+    display: block;
+    padding: 0.75rem 1rem 0.75rem 2rem;
+    text-decoration: none;
+    color: #24292f;
+    transition: all 0.3s ease;
+}
+
+.mobile-submenu-item:hover {
+    background-color: rgba(9, 105, 218, 0.1);
+    box-shadow: 0 0 15px rgba(9, 105, 218, 0.3);
+    color: #0969da !important;
+}
+
+/* Герой-секция */
+.hero-section {
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+}
+
+/* Контент секция */
+.content-section {
+    background-color: #f6f8fa;
+    position: relative;
+    padding-top: 70px;
+}
+
+/* Эффект изгиба вниз для голубого фона */
+.content-section::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 0;
+    right: 0;
+    height: 140px;
+    background-color: #ffffff;
+    border-bottom-left-radius: 50% 100px;
+    border-bottom-right-radius: 50% 100px;
+}
+
+/* Sidebar */
+.sidebar-container {
+    gap: 1.5rem;
+}
+
+.sidebar-item {
+    flex: 1 1 300px;
+}
+
+/* Footer */
+.footer-main {
+    background-color: #0969da;
+    color: #ffffff;
+}
+
+.footer-gap {
+    gap: 2rem;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-text {
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+.footer-link {
+    color: #ffffff;
+    opacity: 0.9;
+    text-decoration: none;
+}
+
+.footer-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Форма */
+.form-input-custom {
+    background-color: #ffffff;
+    border: 1px solid #d0d7de;
+}
+
 /* Отступы для списков в Box */
 .Box-body ul {
     padding-left: 2rem;
@@ -34,26 +233,6 @@
     #mobile-nav {
         display: none !important;
     }
-}
-
-/* Эффект изгиба вниз для голубого фона */
-#content-section::before {
-    content: '';
-    position: absolute;
-    top: -60px;
-    left: 0;
-    right: 0;
-    height: 140px;
-    background-color: #ffffff;
-    border-bottom-left-radius: 50% 100px;
-    border-bottom-right-radius: 50% 100px;
-}
-
-/* Стилизация мобильного меню */
-.mobile-menu-item:hover {
-    background-color: rgba(9, 105, 218, 0.1);
-    box-shadow: 0 0 15px rgba(9, 105, 218, 0.3);
-    color: #0969da !important;
 }
 
 /* Стилизация обычных кнопок навигации */
