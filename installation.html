@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Установка Docker - Docker Tutorial</title>
+    <link href="https://unpkg.com/@primer/css@^21.0.0/dist/primer.css" rel="stylesheet">
+    <link href="css/styles.css?v=4" rel="stylesheet">
+</head>
+<body class="d-flex flex-column body-wrapper">
+    <header class="Header main-header" id="main-header">
+        <div class="header-container">
+            <div class="header-logo-box">
+                <h1>🐳 Docker Tutorial</h1>
+            </div>
+
+            <button id="burger-menu" class="btn burger-menu-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <nav class="desktop-navigation" id="desktop-nav">
+                <ul class="d-flex flex-wrap list-style-none p-0 m-0">
+                    <li class="dropdown">
+                        <button class="btn btn-sm btn-primary dropdown-toggle">Основы</button>
+                        <ul class="dropdown-menu">
+                            <li><a href="what-is-docker.html">Что такое Docker</a></li>
+                            <li><a href="installation.html">Установка Docker</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <button class="btn btn-sm dropdown-toggle">Работа с Docker</button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Основные команды</a></li>
+                            <li><a href="#">Создание образов (Dockerfile)</a></li>
+                            <li><a href="#">Оркестрация контейнеров (Docker Compose)</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <button class="btn btn-sm dropdown-toggle">Практика</button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Примеры использования</a></li>
+                            <li><a href="#">Лучшие практики</a></li>
+                            <li><a href="#">Решение проблем</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#" class="btn btn-sm">Ресурсы</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <nav id="mobile-nav" class="mobile-navigation">
+        <ul class="list-style-none p-0 m-0">
+            <li class="border-bottom mobile-menu-border"><a href="index.html" class="mobile-menu-item">Главная</a></li>
+
+            <!-- Группа: Основы -->
+            <li class="border-bottom mobile-dropdown mobile-menu-border">
+                <button class="mobile-dropdown-toggle">
+                    Основы <span class="mobile-dropdown-arrow">▼</span>
+                </button>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="what-is-docker.html" class="mobile-submenu-item">Что такое Docker</a></li>
+                    <li><a href="installation.html" class="mobile-submenu-item">Установка Docker</a></li>
+                </ul>
+            </li>
+
+            <!-- Группа: Работа с Docker -->
+            <li class="border-bottom mobile-dropdown mobile-menu-border">
+                <button class="mobile-dropdown-toggle">
+                    Работа с Docker <span class="mobile-dropdown-arrow">▼</span>
+                </button>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="#" class="mobile-submenu-item">Основные команды</a></li>
+                    <li><a href="#" class="mobile-submenu-item">Создание образов (Dockerfile)</a></li>
+                    <li><a href="#" class="mobile-submenu-item">Оркестрация контейнеров (Docker Compose)</a></li>
+                </ul>
+            </li>
+
+            <!-- Группа: Практика -->
+            <li class="border-bottom mobile-dropdown mobile-menu-border">
+                <button class="mobile-dropdown-toggle">
+                    Практика <span class="mobile-dropdown-arrow">▼</span>
+                </button>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="#" class="mobile-submenu-item">Примеры использования</a></li>
+                    <li><a href="#" class="mobile-submenu-item">Лучшие практики</a></li>
+                    <li><a href="#" class="mobile-submenu-item">Решение проблем</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#" class="mobile-menu-item-secondary">Ресурсы и документация</a></li>
+        </ul>
+    </nav>
+
+    <div class="container-lg px-4 py-4">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+                <li class="breadcrumb-item"><span>Основы</span></li>
+                <li class="breadcrumb-item breadcrumb-item-active" aria-current="page">Установка Docker</li>
+            </ol>
+        </nav>
+        <div class="page-header">
+            <h1 class="h1 mb-2">Установка Docker</h1>
+            <p class="text-gray">Пошаговая инструкция по установке Docker на различных операционных системах</p>
+        </div>
+    </div>
+
+    <div class="px-4 py-4 content-wrapper">
+        <div class="content-layout">
+            <!-- Main Content -->
+            <main class="content-main">
+
+                <section id="requirements" class="content-section-block">
+                    <h2 class="content-heading">Системные требования</h2>
+                    <p>Перед установкой Docker необходимо убедиться, что ваша система соответствует минимальным требованиям.</p>
+
+                    <div class="info-block">
+                        <h3 class="info-block-title">Требования для разных ОС</h3>
+                        <ul class="feature-list">
+                            <li><strong>Windows:</strong> Windows 10 64-bit Pro, Enterprise или Education (версия 1909 или выше) с поддержкой Hyper-V</li>
+                            <li><strong>macOS:</strong> macOS 10.15 Catalina или новее</li>
+                            <li><strong>Linux:</strong> 64-битная версия Ubuntu, Debian, Fedora, CentOS или другого поддерживаемого дистрибутива</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="windows" class="content-section-block">
+                    <h2 class="content-heading">Установка на Windows</h2>
+                    <p>Docker Desktop для Windows — это полноценное приложение для разработки контейнерных приложений на Windows.</p>
+
+                    <h3 class="content-subheading">Шаг 1: Загрузка Docker Desktop</h3>
+                    <ol class="feature-list">
+                        <li>Перейдите на официальный сайт Docker: <a href="https://www.docker.com/products/docker-desktop" target="_blank">docker.com/products/docker-desktop</a></li>
+                        <li>Нажмите кнопку "Download for Windows"</li>
+                        <li>Дождитесь завершения загрузки установочного файла (Docker Desktop Installer.exe)</li>
+                    </ol>
+
+                    <h3 class="content-subheading">Шаг 2: Установка</h3>
+                    <ol class="feature-list">
+                        <li>Запустите загруженный установочный файл</li>
+                        <li>Следуйте инструкциям мастера установки</li>
+                        <li>Убедитесь, что включена опция "Use WSL 2 instead of Hyper-V" (рекомендуется)</li>
+                        <li>Дождитесь завершения установки</li>
+                        <li>После установки перезагрузите компьютер</li>
+                    </ol>
+
+                    <h3 class="content-subheading">Шаг 3: Запуск и проверка</h3>
+                    <ol class="feature-list">
+                        <li>Запустите Docker Desktop из меню "Пуск"</li>
+                        <li>Дождитесь полного запуска Docker (индикатор в системном трее станет зелёным)</li>
+                        <li>Откройте PowerShell или Command Prompt</li>
+                        <li>Выполните команду: <code>docker --version</code></li>
+                        <li>Проверьте работу Docker командой: <code>docker run hello-world</code></li>
+                    </ol>
+
+                    <div class="info-block info-block-warning">
+                        <p><strong>Важно:</strong> Для работы Docker Desktop на Windows требуется включить виртуализацию в BIOS/UEFI. Также рекомендуется использовать WSL 2 для лучшей производительности.</p>
+                    </div>
+                </section>
+
+                <section id="macos" class="content-section-block">
+                    <h2 class="content-heading">Установка на macOS</h2>
+                    <p>Docker Desktop для macOS предоставляет полный набор инструментов для разработки с Docker на Mac.</p>
+
+                    <h3 class="content-subheading">Шаг 1: Выбор версии</h3>
+                    <p>Docker Desktop доступен в двух версиях в зависимости от процессора:</p>
+                    <ul class="feature-list">
+                        <li><strong>Intel chip:</strong> Для Mac с процессорами Intel</li>
+                        <li><strong>Apple silicon (M1/M2/M3):</strong> Для Mac с чипами Apple Silicon</li>
+                    </ul>
+
+                    <h3 class="content-subheading">Шаг 2: Загрузка и установка</h3>
+                    <ol class="feature-list">
+                        <li>Перейдите на <a href="https://www.docker.com/products/docker-desktop" target="_blank">официальный сайт Docker</a></li>
+                        <li>Выберите версию для вашего процессора</li>
+                        <li>Скачайте Docker.dmg файл</li>
+                        <li>Откройте загруженный файл</li>
+                        <li>Перетащите иконку Docker в папку Applications</li>
+                    </ol>
+
+                    <h3 class="content-subheading">Шаг 3: Первый запуск</h3>
+                    <ol class="feature-list">
+                        <li>Откройте Docker из папки Applications</li>
+                        <li>Разрешите запуск при первом открытии</li>
+                        <li>Введите пароль администратора для установки компонентов</li>
+                        <li>Дождитесь завершения инициализации Docker</li>
+                    </ol>
+
+                    <h3 class="content-subheading">Шаг 4: Проверка установки</h3>
+                    <ol class="feature-list">
+                        <li>Откройте Terminal</li>
+                        <li>Выполните команду: <code>docker --version</code></li>
+                        <li>Проверьте работу: <code>docker run hello-world</code></li>
+                    </ol>
+                </section>
+
+                <section id="linux" class="content-section-block">
+                    <h2 class="content-heading">Установка на Linux</h2>
+                    <p>Установка Docker Engine на Linux зависит от дистрибутива. Рассмотрим установку на Ubuntu, как одном из самых популярных дистрибутивов.</p>
+
+                    <h3 class="content-subheading">Установка на Ubuntu</h3>
+
+                    <h4 class="content-subheading">Шаг 1: Удаление старых версий (если есть)</h4>
+                    <pre><code>sudo apt-get remove docker docker-engine docker.io containerd runc</code></pre>
+
+                    <h4 class="content-subheading">Шаг 2: Установка необходимых пакетов</h4>
+                    <pre><code>sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg lsb-release</code></pre>
+
+                    <h4 class="content-subheading">Шаг 3: Добавление GPG ключа Docker</h4>
+                    <pre><code>sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg</code></pre>
+
+                    <h4 class="content-subheading">Шаг 4: Настройка репозитория</h4>
+                    <pre><code>echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null</code></pre>
+
+                    <h4 class="content-subheading">Шаг 5: Установка Docker Engine</h4>
+                    <pre><code>sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</code></pre>
+
+                    <h4 class="content-subheading">Шаг 6: Проверка установки</h4>
+                    <pre><code>sudo docker run hello-world</code></pre>
+
+                    <h4 class="content-subheading">Шаг 7: Настройка запуска без sudo (опционально)</h4>
+                    <pre><code>sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker</code></pre>
+                    <p>После выполнения этих команд выйдите из системы и войдите снова, чтобы изменения вступили в силу.</p>
+
+                    <div class="info-block">
+                        <h3 class="info-block-title">Установка на других дистрибутивах</h3>
+                        <ul class="feature-list">
+                            <li><strong>Debian:</strong> Процесс аналогичен Ubuntu</li>
+                            <li><strong>Fedora:</strong> Используйте dnf вместо apt-get</li>
+                            <li><strong>CentOS:</strong> Используйте yum вместо apt-get</li>
+                        </ul>
+                        <p>Подробные инструкции для других дистрибутивов доступны в <a href="https://docs.docker.com/engine/install/" target="_blank">официальной документации</a>.</p>
+                    </div>
+                </section>
+
+                <section id="video" class="content-section-block">
+                    <h2 class="content-heading">Видео: Установка Docker</h2>
+                    <p>Пошаговая видеоинструкция по установке Docker на различных операционных системах:</p>
+                    <div class="video-wrapper">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/ZyBBv1JmnWQ" title="Docker Installation Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </section>
+
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="content-sidebar">
+                <div class="sidebar-sticky">
+                    <nav class="toc">
+                        <h3 class="toc-title">На этой странице</h3>
+                        <ul class="toc-list">
+                            <li><a href="#requirements" class="toc-link">Системные требования</a></li>
+                            <li><a href="#windows" class="toc-link">Установка на Windows</a></li>
+                            <li><a href="#macos" class="toc-link">Установка на macOS</a></li>
+                            <li><a href="#linux" class="toc-link">Установка на Linux</a></li>
+                            <li><a href="#video" class="toc-link">Видео</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="p-4 footer-main">
+        <div class="container-lg">
+            <div class="d-flex flex-wrap flex-justify-between footer-gap">
+                <!-- Колонка 1: О проекте -->
+                <div class="footer-column">
+                    <h3 class="h4 mb-3">Docker Tutorial</h3>
+                    <p class="footer-text">Образовательный ресурс по контейнеризации и Docker для разработчиков</p>
+                </div>
+
+                <!-- Колонка 2: Полезные ссылки -->
+                <div class="footer-column">
+                    <h4 class="h5 mb-3">Полезные ссылки</h4>
+                    <ul class="list-style-none pl-0">
+                        <li class="mb-2"><a href="https://docs.docker.com" class="footer-link" target="_blank">Официальная документация</a></li>
+                        <li class="mb-2"><a href="https://hub.docker.com" class="footer-link" target="_blank">Docker Hub</a></li>
+                        <li class="mb-2"><a href="https://github.com/docker" class="footer-link" target="_blank">GitHub Docker</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3: Контакты -->
+                <div class="footer-column">
+                    <h4 class="h5 mb-3">Контакты</h4>
+                    <ul class="list-style-none pl-0">
+                        <li class="mb-2 footer-text">Email: info@dockertutorial.ru</li>
+                        <li class="mb-2 footer-text">Telegram: @dockertutorial</li>
+                        <li class="mb-2 footer-text">GitHub: github.com/dockertutorial</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Копирайт -->
+            <div class="text-center mt-4 pt-3 footer-divider">
+                <p class="m-0 footer-text">&copy; 2025 Docker Tutorial. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
