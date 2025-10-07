@@ -24,29 +24,42 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: transform 0.3s ease-in-out;
-    background-color: #ffffff;
-    border-top: 2px solid #0969da;
-    border-bottom: 1px solid #d0d7de;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(208, 215, 222, 0.5);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.main-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .header-container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.875rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .header-logo-box {
-    background-color: #ffffff;
-    border: 1px solid #d0d7de;
-    border-radius: 6px;
-    padding: 0.5rem 0.75rem !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .header-logo-box h1 {
-    font-size: 1.125rem !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: #0969da !important;
+    margin: 0 !important;
 }
 
 /* Бургер-меню */
@@ -62,9 +75,13 @@
 
 /* Навигация */
 .desktop-navigation {
-    background-color: #ffffff;
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
+    background: none;
+    padding: 0 !important;
+    margin-left: 3rem;
+}
+
+.desktop-navigation ul {
+    gap: 0.5rem;
 }
 
 .mobile-navigation {
@@ -543,6 +560,134 @@
     }
 }
 
+/* Landing Page Styles */
+
+/* Features Section */
+.features-section {
+    background-color: #ffffff;
+    padding: 4rem 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: #ffffff;
+    border: 1px solid #d0d7de;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.feature-image-placeholder {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    padding: 5rem 0;
+}
+
+.cta-section h2,
+.cta-section p {
+    color: #ffffff;
+}
+
+.cta-button {
+    font-size: 1.125rem;
+    padding: 0.875rem 2.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Use Cases Section */
+.use-cases-section {
+    background-color: #f6f8fa;
+    padding: 4rem 0;
+}
+
+.use-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.use-case-item {
+    background: #ffffff;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.use-case-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.use-case-image-placeholder {
+    width: 100%;
+    height: 120px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.use-case-item h4 {
+    margin-bottom: 0.5rem;
+    color: #24292f;
+}
+
+.use-case-item p {
+    color: #6e7781;
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+/* Responsive для лендинга */
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .use-cases-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cta-section {
+        padding: 3rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .use-cases-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Sidebar */
 .sidebar-container {
     gap: 1.5rem;
@@ -612,16 +757,47 @@
 
 /* Стилизация обычных кнопок навигации */
 #desktop-nav .btn {
-    transition: all 0.3s ease;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #24292f;
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0.75rem;
+    transition: color 0.3s ease;
+}
+
+#desktop-nav .btn:not(.dropdown-toggle)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #0969da;
+    transition: width 0.3s ease, left 0.3s ease;
 }
 
 #desktop-nav .btn:hover {
-    box-shadow: 0 0 15px rgba(9, 105, 218, 0.4);
-    transform: translateY(-2px);
+    color: #0969da;
+    background: none !important;
+    box-shadow: none !important;
+    transform: none;
 }
 
-#desktop-nav .btn-primary:hover {
-    box-shadow: 0 0 20px rgba(9, 105, 218, 0.6);
+#desktop-nav .btn:not(.dropdown-toggle):hover::after {
+    width: 100%;
+    left: 0;
+}
+
+#desktop-nav .btn-primary {
+    color: #0969da;
+    font-weight: 600;
+}
+
+#desktop-nav .btn-primary:not(.dropdown-toggle)::after {
+    width: 100%;
+    left: 0;
 }
 
 /* Стили для выпадающих меню */
@@ -629,10 +805,42 @@
     position: relative;
 }
 
+.dropdown-toggle {
+    position: relative;
+}
+
+.dropdown-toggle::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #0969da;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.dropdown-toggle:hover::before {
+    width: 100%;
+    left: 0;
+}
+
 .dropdown-toggle::after {
     content: ' ▼';
-    font-size: 0.7em;
-    margin-left: 4px;
+    font-size: 0.65em;
+    margin-left: 6px;
+    opacity: 0.7;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.dropdown-toggle:hover::after {
+    opacity: 1;
+    transform: translateY(2px);
+}
+
+.dropdown-toggle.btn-primary::before {
+    width: 100%;
+    left: 0;
 }
 
 .dropdown-menu {
