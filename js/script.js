@@ -39,30 +39,32 @@ function typeWriter() {
     setTimeout(typeWriter, speed);
 }
 
-// Скрытие/показ header при прокрутке
-let lastScrollTop = 0;
-const header = document.getElementById('main-header');
-const mobileNavElement = document.getElementById('mobile-nav');
+// Скрытие/показ header при прокрутке (только на главной странице)
+if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
+    let lastScrollTop = 0;
+    const header = document.getElementById('main-header');
+    const mobileNavElement = document.getElementById('mobile-nav');
 
-window.addEventListener('scroll', function() {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-        // Прокрутка вниз - скрываем header и мобильное меню
-        header.style.transform = 'translateY(-100%)';
-        if (mobileNavElement.style.display === 'block') {
-            mobileNavElement.style.transform = 'translateY(-100%)';
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Прокрутка вниз - скрываем header и мобильное меню
+            header.style.transform = 'translateY(-100%)';
+            if (mobileNavElement.style.display === 'block') {
+                mobileNavElement.style.transform = 'translateY(-100%)';
+            }
+        } else {
+            // Прокрутка вверх - показываем header
+            header.style.transform = 'translateY(0)';
+            if (mobileNavElement.style.display === 'block') {
+                mobileNavElement.style.transform = 'translateY(0)';
+            }
         }
-    } else {
-        // Прокрутка вверх - показываем header
-        header.style.transform = 'translateY(0)';
-        if (mobileNavElement.style.display === 'block') {
-            mobileNavElement.style.transform = 'translateY(0)';
-        }
-    }
 
-    lastScrollTop = scrollTop;
-});
+        lastScrollTop = scrollTop;
+    });
+}
 
 // Управление бургер-меню
 const burgerMenu = document.getElementById('burger-menu');
