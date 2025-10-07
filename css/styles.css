@@ -161,10 +161,11 @@
     padding: 0;
     margin: 0;
     font-size: 0.875rem;
+    line-height: 1.5;
 }
 
 .breadcrumb-item {
-    display: inline-flex;
+    display: flex;
     align-items: center;
 }
 
@@ -172,7 +173,8 @@
     content: '/';
     margin: 0 0.5rem;
     color: #6e7781;
-    display: inline-block;
+    font-size: 0.875rem;
+    line-height: 1;
 }
 
 .breadcrumb-item a {
@@ -410,11 +412,14 @@
 /* Sidebar */
 .content-sidebar {
     min-width: 0;
+    align-self: start;
 }
 
 .sidebar-sticky {
     position: sticky;
-    top: 1rem;
+    top: 5rem;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
 }
 
 /* Table of Contents */
