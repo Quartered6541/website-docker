@@ -40,7 +40,9 @@ function typeWriter() {
 }
 
 // Скрытие/показ header при прокрутке (только на главной странице)
-if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
+const currentPath = window.location.pathname;
+const isHomePage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/index.html') || currentPath.endsWith('/');
+if (isHomePage && !currentPath.includes('what-is-docker')) {
     let lastScrollTop = 0;
     const header = document.getElementById('main-header');
     const mobileNavElement = document.getElementById('mobile-nav');
