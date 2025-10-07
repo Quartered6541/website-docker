@@ -100,191 +100,166 @@
         </ul>
     </nav>
 
-    <div class="px-4">
-        <div class="text-center hero-section">
-            <h1 class="h0-mktg mb-3">Что такое Docker?</h1>
-            <p class="lead text-gray mb-4">Понимание основ контейнеризации и архитектуры Docker</p>
+    <div class="container-lg px-4 py-4">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+                <li class="breadcrumb-item"><span>Основы</span></li>
+                <li class="breadcrumb-item breadcrumb-item-active" aria-current="page">Что такое Docker</li>
+            </ol>
+        </nav>
+        <div class="page-header">
+            <h1 class="h1 mb-2">Что такое Docker?</h1>
+            <p class="text-gray">Понимание основ контейнеризации и архитектуры Docker</p>
         </div>
     </div>
 
-    <div class="flex-1 px-4 content-section" id="content-section">
-        <main class="p-4">
+    <div class="container-lg px-4 py-4">
+        <div class="content-layout">
+            <!-- Main Content -->
+            <main class="content-main">
 
-            <div class="Box mb-4">
-                <div class="Box-header">
-                    <h2 class="Box-title">Определение Docker</h2>
-                </div>
-                <div class="Box-body">
+                <section id="definition" class="content-section-block">
+                    <h2 class="content-heading">Определение Docker</h2>
                     <p>Docker — это открытая платформа для разработки, доставки и запуска приложений в контейнерах. Контейнеризация позволяет упаковать приложение со всеми его зависимостями в стандартизированную единицу для развертывания программного обеспечения.</p>
 
                     <p>Основная идея Docker заключается в том, чтобы предоставить разработчикам и системным администраторам возможность быстро и надежно развертывать приложения в любой среде — будь то локальная машина разработчика, тестовый сервер или продакшн в облаке.</p>
 
-                    <p class="mt-3"><strong>Ключевые особенности Docker:</strong></p>
-                    <ul class="mt-2">
-                        <li class="mb-2"><strong>Легковесность</strong> — контейнеры используют общее ядро операционной системы и потребляют значительно меньше ресурсов, чем виртуальные машины</li>
-                        <li class="mb-2"><strong>Портативность</strong> — контейнер, созданный на одной системе, будет работать на любой другой системе с Docker</li>
-                        <li class="mb-2"><strong>Изоляция</strong> — каждый контейнер работает в изолированном окружении с собственной файловой системой</li>
-                        <li class="mb-2"><strong>Скорость</strong> — контейнеры запускаются за секунды, что ускоряет процессы разработки и развертывания</li>
-                        <li class="mb-2"><strong>Масштабируемость</strong> — легко создавать множество экземпляров контейнера для обработки нагрузки</li>
-                    </ul>
-                </div>
-            </div>
+                    <div class="info-block">
+                        <h3 class="info-block-title">Ключевые особенности Docker</h3>
+                        <ul class="feature-list">
+                            <li><strong>Легковесность</strong> — контейнеры используют общее ядро операционной системы и потребляют значительно меньше ресурсов, чем виртуальные машины</li>
+                            <li><strong>Портативность</strong> — контейнер, созданный на одной системе, будет работать на любой другой системе с Docker</li>
+                            <li><strong>Изоляция</strong> — каждый контейнер работает в изолированном окружении с собственной файловой системой</li>
+                            <li><strong>Скорость</strong> — контейнеры запускаются за секунды, что ускоряет процессы разработки и развертывания</li>
+                            <li><strong>Масштабируемость</strong> — легко создавать множество экземпляров контейнера для обработки нагрузки</li>
+                        </ul>
+                    </div>
+                </section>
 
-            <div class="Box mb-4">
-                <div class="Box-header">
-                    <h2 class="Box-title">Архитектура Docker</h2>
-                </div>
-                <div class="Box-body">
+                <section id="architecture" class="content-section-block">
+                    <h2 class="content-heading">Архитектура Docker</h2>
                     <p>Docker использует клиент-серверную архитектуру. Основные компоненты системы:</p>
 
-                    <h3 class="h4 mt-4 mb-3">Docker Client (Клиент)</h3>
+                    <h3 class="content-subheading">Docker Client (Клиент)</h3>
                     <p>Docker Client — это основной способ взаимодействия пользователя с Docker. Когда вы используете команды типа <code>docker run</code>, клиент отправляет эти команды демону Docker, который их выполняет. Клиент может общаться с несколькими демонами.</p>
 
-                    <h3 class="h4 mt-4 mb-3">Docker Daemon (Демон)</h3>
+                    <h3 class="content-subheading">Docker Daemon (Демон)</h3>
                     <p>Docker Daemon (<code>dockerd</code>) — это фоновый процесс, который управляет Docker-объектами: образами, контейнерами, сетями и томами. Демон слушает API-запросы от Docker Client и обрабатывает их. Демон также может общаться с другими демонами для управления Docker-сервисами.</p>
 
-                    <h3 class="h4 mt-4 mb-3">Docker Registry (Реестр)</h3>
+                    <h3 class="content-subheading">Docker Registry (Реестр)</h3>
                     <p>Docker Registry — это хранилище для Docker-образов. Docker Hub — публичный реестр, который может использовать любой желающий, и Docker по умолчанию ищет образы на Docker Hub. Вы также можете запустить свой собственный приватный реестр.</p>
 
-                    <h3 class="h4 mt-4 mb-3">Основные объекты Docker</h3>
-                    <ul class="mt-2">
-                        <li class="mb-2"><strong>Образ (Image)</strong> — шаблон только для чтения с инструкциями для создания контейнера. Образ основан на другом образе с дополнительной настройкой.</li>
-                        <li class="mb-2"><strong>Контейнер (Container)</strong> — запущенный экземпляр образа. Контейнер можно создать, запустить, остановить, переместить или удалить.</li>
-                        <li class="mb-2"><strong>Том (Volume)</strong> — механизм для сохранения данных, генерируемых и используемых контейнерами Docker.</li>
-                        <li class="mb-2"><strong>Сеть (Network)</strong> — позволяет контейнерам общаться друг с другом и с внешним миром.</li>
+                    <h3 class="content-subheading">Основные объекты Docker</h3>
+                    <ul class="feature-list">
+                        <li><strong>Образ (Image)</strong> — шаблон только для чтения с инструкциями для создания контейнера. Образ основан на другом образе с дополнительной настройкой.</li>
+                        <li><strong>Контейнер (Container)</strong> — запущенный экземпляр образа. Контейнер можно создать, запустить, остановить, переместить или удалить.</li>
+                        <li><strong>Том (Volume)</strong> — механизм для сохранения данных, генерируемых и используемых контейнерами Docker.</li>
+                        <li><strong>Сеть (Network)</strong> — позволяет контейнерам общаться друг с другом и с внешним миром.</li>
                     </ul>
-                </div>
-            </div>
+                </section>
 
-            <div class="Box mb-4">
-                <div class="Box-header">
-                    <h2 class="Box-title">Docker vs Виртуальные машины</h2>
-                </div>
-                <div class="Box-body">
+                <section id="comparison" class="content-section-block">
+                    <h2 class="content-heading">Docker vs Виртуальные машины</h2>
                     <p>Многие путают Docker с виртуальными машинами, но это принципиально разные технологии. Вот основные различия:</p>
 
-                    <div class="overflow-auto mt-3">
-                        <table class="table-auto width-full">
+                    <div class="table-wrapper">
+                        <table class="comparison-table">
                             <thead>
                                 <tr>
-                                    <th class="text-left p-3" style="background-color: #f6f8fa; border: 1px solid #d0d7de;">Характеристика</th>
-                                    <th class="text-left p-3" style="background-color: #f6f8fa; border: 1px solid #d0d7de;">Docker контейнеры</th>
-                                    <th class="text-left p-3" style="background-color: #f6f8fa; border: 1px solid #d0d7de;">Виртуальные машины</th>
+                                    <th>Характеристика</th>
+                                    <th>Docker контейнеры</th>
+                                    <th>Виртуальные машины</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="p-3" style="border: 1px solid #d0d7de;"><strong>Размер</strong></td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de;">Мегабайты</td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de;">Гигабайты</td>
+                                    <td><strong>Размер</strong></td>
+                                    <td>Мегабайты</td>
+                                    <td>Гигабайты</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3" style="border: 1px solid #d0d7de; background-color: #f6f8fa;"><strong>Время запуска</strong></td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de; background-color: #f6f8fa;">Секунды</td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de; background-color: #f6f8fa;">Минуты</td>
+                                    <td><strong>Время запуска</strong></td>
+                                    <td>Секунды</td>
+                                    <td>Минуты</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3" style="border: 1px solid #d0d7de;"><strong>Производительность</strong></td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de;">Нативная (почти без потерь)</td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de;">Виртуализированная (с потерями)</td>
+                                    <td><strong>Производительность</strong></td>
+                                    <td>Нативная (почти без потерь)</td>
+                                    <td>Виртуализированная (с потерями)</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3" style="border: 1px solid #d0d7de; background-color: #f6f8fa;"><strong>Изоляция</strong></td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de; background-color: #f6f8fa;">На уровне процессов</td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de; background-color: #f6f8fa;">Полная изоляция с гипервизором</td>
+                                    <td><strong>Изоляция</strong></td>
+                                    <td>На уровне процессов</td>
+                                    <td>Полная изоляция с гипервизором</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3" style="border: 1px solid #d0d7de;"><strong>Операционная система</strong></td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de;">Разделяют ОС хоста</td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de;">Каждая VM имеет свою ОС</td>
+                                    <td><strong>Операционная система</strong></td>
+                                    <td>Разделяют ОС хоста</td>
+                                    <td>Каждая VM имеет свою ОС</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3" style="border: 1px solid #d0d7de; background-color: #f6f8fa;"><strong>Использование ресурсов</strong></td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de; background-color: #f6f8fa;">Минимальное</td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de; background-color: #f6f8fa;">Значительное</td>
+                                    <td><strong>Использование ресурсов</strong></td>
+                                    <td>Минимальное</td>
+                                    <td>Значительное</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3" style="border: 1px solid #d0d7de;"><strong>Портативность</strong></td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de;">Очень высокая</td>
-                                    <td class="p-3" style="border: 1px solid #d0d7de;">Средняя</td>
+                                    <td><strong>Портативность</strong></td>
+                                    <td>Очень высокая</td>
+                                    <td>Средняя</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <p class="mt-3"><strong>Важно понимать:</strong> Docker и виртуальные машины не являются взаимозаменяемыми технологиями. Они решают разные задачи и могут дополнять друг друга. В некоторых случаях Docker-контейнеры запускаются внутри виртуальных машин для дополнительной изоляции и безопасности.</p>
-                </div>
-            </div>
+                    <div class="info-block info-block-warning">
+                        <p><strong>Важно понимать:</strong> Docker и виртуальные машины не являются взаимозаменяемыми технологиями. Они решают разные задачи и могут дополнять друг друга. В некоторых случаях Docker-контейнеры запускаются внутри виртуальных машин для дополнительной изоляции и безопасности.</p>
+                    </div>
+                </section>
 
-            <div class="Box mb-4">
-                <div class="Box-header">
-                    <h2 class="Box-title">Видео: Введение в Docker</h2>
-                </div>
-                <div class="Box-body">
-                    <p class="mb-3">Посмотрите это видео для более наглядного понимания основ Docker:</p>
-                    <div class="ratio ratio-16x9">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Gjnup-PuquQ" title="Docker Tutorial for Beginners" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="max-width: 100%; border-radius: 6px;"></iframe>
+                <section id="video" class="content-section-block">
+                    <h2 class="content-heading">Видео: Введение в Docker</h2>
+                    <p>Посмотрите это видео для более наглядного понимания основ Docker:</p>
+                    <div class="video-wrapper">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Gjnup-PuquQ" title="Docker Tutorial for Beginners" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </section>
+
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="content-sidebar">
+                <div class="sidebar-sticky">
+                    <nav class="toc">
+                        <h3 class="toc-title">На этой странице</h3>
+                        <ul class="toc-list">
+                            <li><a href="#definition" class="toc-link">Определение Docker</a></li>
+                            <li><a href="#architecture" class="toc-link">Архитектура Docker</a></li>
+                            <li><a href="#comparison" class="toc-link">Docker vs ВМ</a></li>
+                            <li><a href="#video" class="toc-link">Видео</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="sidebar-box">
+                        <h3 class="sidebar-box-title">Быстрые ссылки</h3>
+                        <ul class="sidebar-links">
+                            <li><a href="#">Популярные команды</a></li>
+                            <li><a href="#">Официальная документация</a></li>
+                            <li><a href="#">Docker Hub</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-box">
+                        <h3 class="sidebar-box-title">Полезные ресурсы</h3>
+                        <ul class="sidebar-links">
+                            <li><a href="#">Сообщество Docker</a></li>
+                            <li><a href="#">Видеоуроки</a></li>
+                            <li><a href="#">Примеры проектов</a></li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-
-        </main>
-
-        <aside class="p-4">
-            <div class="d-flex flex-wrap sidebar-container">
-                <div class="sidebar-item">
-                    <div class="Box">
-                        <div class="Box-header">
-                            <h2 class="Box-title">Быстрые ссылки</h2>
-                        </div>
-                        <div class="Box-body">
-                            <ul class="list-style-none pl-0 m-0">
-                                <li class="mb-2"><a href="#">Популярные команды</a></li>
-                                <li class="mb-2"><a href="#">Официальная документация</a></li>
-                                <li class="mb-2"><a href="#">Docker Hub</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sidebar-item">
-                    <div class="Box">
-                        <div class="Box-header">
-                            <h2 class="Box-title">Полезные ресурсы</h2>
-                        </div>
-                        <div class="Box-body">
-                            <ul class="list-style-none pl-0 m-0">
-                                <li class="mb-2"><a href="#">Сообщество Docker</a></li>
-                                <li class="mb-2"><a href="#">Видеоуроки</a></li>
-                                <li class="mb-2"><a href="#">Примеры проектов</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sidebar-item">
-                    <div class="Box">
-                        <div class="Box-header">
-                            <h2 class="Box-title">Подписка на новости</h2>
-                        </div>
-                        <div class="Box-body">
-                            <p class="mb-3">Получайте актуальные новости о Docker и контейнеризации</p>
-                            <form>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label d-block mb-1">Email адрес</label>
-                                    <input type="email" id="email" class="form-control input-block form-input-custom" placeholder="your@email.com" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label d-block mb-1">Имя</label>
-                                    <input type="text" id="name" class="form-control input-block form-input-custom" placeholder="Ваше имя" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-block">Подписаться</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </aside>
+            </aside>
+        </div>
     </div>
 
     <footer class="p-4 footer-main">

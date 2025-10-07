@@ -86,12 +86,64 @@ window.addEventListener('resize', function() {
     }
 });
 
+// Активное подсвечивание TOC при прокрутке
+function initTableOfContents() {
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const sections = document.querySelectorAll('.content-section-block[id]');
+
+    if (sections.length === 0 || tocLinks.length === 0) return;
+
+    function highlightActiveSection() {
+        let current = '';
+        const scrollPosition = window.pageYOffset + 100;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Плавная прокрутка при клике на ссылки TOC
+    tocLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                const offsetTop = targetSection.offsetTop - 20;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    window.addEventListener('scroll', highlightActiveSection);
+    highlightActiveSection();
+}
+
 // Управление выпадающими меню
 document.addEventListener('DOMContentLoaded', function() {
     // Запуск анимации печатной машинки только если элемент существует
     if (typewriterElement) {
         typeWriter();
     }
+
+    // Инициализация Table of Contents
+    initTableOfContents();
 
     // Получаем все кнопки выпадающих меню
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
