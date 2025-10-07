@@ -250,9 +250,10 @@
     min-width: 0;
     max-width: 1000px;
     background-color: #ffffff;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 2.5rem 3rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #d0d7de;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 /* Content Section Block */
@@ -302,15 +303,17 @@
 /* Info Blocks */
 .info-block {
     background-color: #ddf4ff;
-    border: 1px solid #54aeff;
-    border-radius: 6px;
+    border: 2px solid #54aeff;
+    border-radius: 8px;
     padding: 1rem 1.25rem;
     margin: 1.5rem 0;
+    box-shadow: 0 2px 4px rgba(84, 174, 255, 0.15);
 }
 
 .info-block-warning {
     background-color: #fff8c5;
-    border-color: #d4a72c;
+    border: 2px solid #d4a72c;
+    box-shadow: 0 2px 4px rgba(212, 167, 44, 0.15);
 }
 
 .info-block-title {
@@ -350,8 +353,9 @@
 .table-wrapper {
     overflow-x: auto;
     margin: 1.5rem 0;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid #d0d7de;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 /* Comparison Table */
@@ -416,10 +420,11 @@
 /* Table of Contents */
 .toc {
     background-color: #ffffff;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 1.25rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #d0d7de;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .toc-title {
@@ -465,10 +470,11 @@
 /* Sidebar Box */
 .sidebar-box {
     background-color: #ffffff;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 1.25rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #d0d7de;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .sidebar-box-title {
