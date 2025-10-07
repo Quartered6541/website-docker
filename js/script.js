@@ -139,6 +139,16 @@ function initTableOfContents() {
     highlightActiveSection();
 }
 
+// Добавление класса при прокрутке для header
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('main-header');
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
 // Управление выпадающими меню
 document.addEventListener('DOMContentLoaded', function() {
     // Запуск анимации печатной машинки только если элемент существует
