@@ -175,6 +175,10 @@
     color: #6e7781;
     font-size: 0.875rem;
     line-height: 1;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    left: -2px;
 }
 
 .breadcrumb-item a {
@@ -416,10 +420,12 @@
 }
 
 .sidebar-sticky {
+    position: -webkit-sticky;
     position: sticky;
-    top: 5rem;
-    max-height: calc(100vh - 6rem);
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
     overflow-y: auto;
+    will-change: position;
 }
 
 /* Table of Contents */
