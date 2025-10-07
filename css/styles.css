@@ -420,8 +420,8 @@
 .sidebar-sticky {
     position: -webkit-sticky;
     position: sticky;
-    top: 1rem;
-    max-height: calc(100vh - 2rem);
+    top: 120px;
+    max-height: calc(100vh - 140px);
     overflow-y: auto;
     will-change: position;
 }
