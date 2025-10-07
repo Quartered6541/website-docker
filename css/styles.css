@@ -164,7 +164,7 @@
 }
 
 .breadcrumb-item {
-    display: flex;
+    display: inline-flex;
     align-items: center;
 }
 
@@ -172,6 +172,7 @@
     content: '/';
     margin: 0 0.5rem;
     color: #6e7781;
+    display: inline-block;
 }
 
 .breadcrumb-item a {
