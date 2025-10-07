@@ -233,15 +233,15 @@
 /* Content Layout (двухколоночный) */
 .content-layout {
     display: grid;
-    grid-template-columns: minmax(0, 900px) 280px;
+    grid-template-columns: 1fr 280px;
     gap: 2.5rem;
     align-items: start;
-    max-width: 1400px;
 }
 
 /* Main Content Area */
 .content-main {
     min-width: 0;
+    max-width: 1000px;
     background-color: #ffffff;
     border-radius: 6px;
     padding: 2.5rem 3rem;
