@@ -208,4 +208,30 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Функция копирования кода
+    const copyButtons = document.querySelectorAll('.code-copy-btn');
+
+    copyButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const codeBlock = this.closest('.code-block-container').querySelector('code');
+            const textToCopy = codeBlock.textContent;
+
+            // Копирование в буфер обмена
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                // Изменение текста кнопки
+                const originalText = button.textContent;
+                button.textContent = '✓ Скопировано';
+                button.classList.add('copied');
+
+                // Возврат к исходному состоянию через 2 секунды
+                setTimeout(function() {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Ошибка при копировании: ', err);
+            });
+        });
+    });
 });
