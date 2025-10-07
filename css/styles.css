@@ -230,6 +230,12 @@
     background-color: #f6f8fa;
 }
 
+/* Content Wrapper */
+.content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 /* Content Layout (двухколоночный) */
 .content-layout {
     display: grid;
