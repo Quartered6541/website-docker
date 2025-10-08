@@ -134,6 +134,93 @@
                     </div>
                 </section>
 
+                <section id="example1" class="content-section-block">
+                    <h2 class="content-heading">Пример 1: Веб-приложение Node.js с PostgreSQL</h2>
+                    <p>Один из самых распространённых сценариев — это веб-приложение на Node.js с базой данных PostgreSQL. Рассмотрим, как организовать такой проект с помощью Docker Compose.</p>
+
+                    <h3 class="content-subheading">Структура проекта</h3>
+                    <div class="code-block-wrapper">
+                        <pre><code>my-app/
+├── docker-compose.yml
+├── Dockerfile
+├── package.json
+├── server.js
+└── .env</code></pre>
+                    </div>
+
+                    <h3 class="content-subheading">Dockerfile</h3>
+                    <p>Создадим образ для нашего Node.js приложения:</p>
+                    <div class="code-block-wrapper">
+                        <pre><code>FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]</code></pre>
+                    </div>
+
+                    <h3 class="content-subheading">docker-compose.yml</h3>
+                    <p>Настроим оркестрацию двух сервисов — приложения и базы данных:</p>
+                    <div class="code-block-wrapper">
+                        <pre><code>version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/mydb
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:</code></pre>
+                    </div>
+
+                    <h3 class="content-subheading">Запуск</h3>
+                    <div class="code-block-wrapper">
+                        <pre><code># Запустить все сервисы
+docker-compose up -d
+
+# Просмотреть логи
+docker-compose logs -f
+
+# Остановить
+docker-compose down</code></pre>
+                    </div>
+
+                    <div class="info-block">
+                        <p><strong>Ключевые моменты:</strong></p>
+                        <ul class="feature-list">
+                            <li><code>depends_on</code> — гарантирует, что база данных запустится перед приложением</li>
+                            <li><code>volumes</code> — синхронизация кода для разработки и персистентность данных БД</li>
+                            <li><code>environment</code> — передача конфигурации через переменные окружения</li>
+                            <li>Alpine образы — минимальный размер контейнеров</li>
+                        </ul>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
