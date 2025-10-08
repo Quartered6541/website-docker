@@ -115,7 +115,62 @@
         <div class="content-layout">
             <!-- Main Content -->
             <main class="content-main">
-                <!-- Контент будет добавлен далее -->
+
+                <section id="intro" class="content-section-block">
+                    <h2 class="content-heading">Что такое Dockerfile?</h2>
+                    <p>Dockerfile — это текстовый файл с набором инструкций для автоматического создания Docker-образа. Он описывает, какая базовая операционная система будет использована, какие приложения установлены, какие файлы скопированы и какие команды выполнены при старте контейнера.</p>
+
+                    <p>Использование Dockerfile позволяет:</p>
+                    <ul class="feature-list">
+                        <li><strong>Автоматизировать</strong> процесс создания образов</li>
+                        <li><strong>Документировать</strong> конфигурацию приложения</li>
+                        <li><strong>Воспроизводить</strong> идентичные окружения на разных машинах</li>
+                        <li><strong>Версионировать</strong> инфраструктуру вместе с кодом</li>
+                        <li><strong>Ускорять</strong> развертывание за счет переиспользования слоев</li>
+                    </ul>
+
+                    <div class="info-block">
+                        <p><strong>Важно:</strong> Dockerfile должен называться именно <code>Dockerfile</code> (с заглавной буквы D) и находиться в корне проекта. Хотя можно использовать другое имя с флагом <code>-f</code>.</p>
+                    </div>
+                </section>
+
+                <section id="structure" class="content-section-block">
+                    <h2 class="content-heading">Структура Dockerfile</h2>
+                    <p>Dockerfile состоит из набора инструкций, которые выполняются последовательно сверху вниз. Каждая инструкция создает новый слой в образе.</p>
+
+                    <h3 class="content-subheading">Базовая структура</h3>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Комментарий
+FROM базовый_образ
+
+# Установка зависимостей
+RUN команда_установки
+
+# Копирование файлов
+COPY исходный_файл целевой_путь
+
+# Настройка переменных окружения
+ENV ПЕРЕМЕННАЯ=значение
+
+# Команда запуска
+CMD ["исполняемый_файл", "параметр1", "параметр2"]</code></pre>
+                        </div>
+                    </div>
+
+                    <p>Основные правила написания Dockerfile:</p>
+                    <ul class="feature-list">
+                        <li>Инструкции пишутся ЗАГЛАВНЫМИ буквами (хотя это необязательно)</li>
+                        <li>Комментарии начинаются с символа <code>#</code></li>
+                        <li>Первой инструкцией должна быть <code>FROM</code></li>
+                        <li>Порядок инструкций имеет значение</li>
+                    </ul>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
