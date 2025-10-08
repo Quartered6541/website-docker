@@ -554,6 +554,90 @@ docker stats --no-stream --format "{{json .}}"</code></pre>
                     </div>
                 </section>
 
+                <section id="summary-table" class="content-section-block">
+                    <h2 class="content-heading">Краткая сводка рекомендаций</h2>
+                    <p>Таблица с основными правилами, которые следует соблюдать при работе с Docker.</p>
+
+                    <div class="table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Категория</th>
+                                    <th style="color: #1a7f37;">✓ Делайте (DO)</th>
+                                    <th style="color: #cf222e;">✗ Не делайте (DON'T)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Базовые образы</strong></td>
+                                    <td>Используйте Alpine или slim варианты</td>
+                                    <td>Не используйте полноразмерные образы без необходимости</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Версии</strong></td>
+                                    <td>Указывайте конкретные версии (node:18.2.0)</td>
+                                    <td>Не используйте тег <code>latest</code> в продакшене</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Безопасность</strong></td>
+                                    <td>Запускайте процессы от непривилегированного пользователя</td>
+                                    <td>Не запускайте от root без крайней необходимости</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Секреты</strong></td>
+                                    <td>Используйте Docker Secrets или переменные окружения</td>
+                                    <td>Не храните пароли и ключи в Dockerfile или коде</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Слои</strong></td>
+                                    <td>Объединяйте связанные RUN команды</td>
+                                    <td>Не создавайте лишние слои</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Кэширование</strong></td>
+                                    <td>Размещайте редко меняющиеся инструкции в начале</td>
+                                    <td>Не копируйте весь код перед установкой зависимостей</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Данные</strong></td>
+                                    <td>Используйте volumes для персистентных данных</td>
+                                    <td>Не храните важные данные внутри контейнера</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Логи</strong></td>
+                                    <td>Настройте ротацию логов (max-size, max-file)</td>
+                                    <td>Не позволяйте логам заполнять весь диск</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ресурсы</strong></td>
+                                    <td>Устанавливайте лимиты CPU и памяти</td>
+                                    <td>Не запускайте контейнеры без ограничений ресурсов</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Health Checks</strong></td>
+                                    <td>Определяйте HEALTHCHECK для критичных сервисов</td>
+                                    <td>Не полагайтесь только на статус контейнера</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Сборка</strong></td>
+                                    <td>Используйте multi-stage builds</td>
+                                    <td>Не включайте build-инструменты в финальный образ</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Контекст</strong></td>
+                                    <td>Создайте .dockerignore файл</td>
+                                    <td>Не копируйте node_modules, .git и другой мусор</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="info-block info-block-warning">
+                        <h3 class="info-block-title">Помните!</h3>
+                        <p>Эти рекомендации — результат опыта тысяч разработчиков. Следование им сэкономит вам время, уменьшит количество проблем в продакшене и повысит безопасность ваших приложений.</p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
