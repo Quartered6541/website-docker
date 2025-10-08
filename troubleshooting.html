@@ -584,6 +584,137 @@ docker image prune -a --filter "until=720h"</code></pre>
                     </div>
                 </section>
 
+                <section id="common-errors" class="content-section-block">
+                    <h2 class="content-heading">Таблица частых ошибок</h2>
+                    <p>Сводная таблица распространенных ошибок Docker и их решений.</p>
+
+                    <div class="table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Ошибка</th>
+                                    <th>Причина</th>
+                                    <th>Решение</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>Cannot connect to the Docker daemon</code></td>
+                                    <td>Docker daemon не запущен</td>
+                                    <td><code>sudo systemctl start docker</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>permission denied</code></td>
+                                    <td>Пользователь не в группе docker</td>
+                                    <td><code>sudo usermod -aG docker $USER</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>port is already allocated</code></td>
+                                    <td>Порт занят другим контейнером</td>
+                                    <td>Остановить контейнер или использовать другой порт</td>
+                                </tr>
+                                <tr>
+                                    <td><code>no space left on device</code></td>
+                                    <td>Закончилось место на диске</td>
+                                    <td><code>docker system prune -a</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>OCI runtime create failed</code></td>
+                                    <td>Ошибка при создании контейнера</td>
+                                    <td>Проверить логи: <code>docker logs container_name</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>manifest unknown</code></td>
+                                    <td>Образ не найден в registry</td>
+                                    <td>Проверить имя и тег образа</td>
+                                </tr>
+                                <tr>
+                                    <td><code>network not found</code></td>
+                                    <td>Указанная сеть не существует</td>
+                                    <td><code>docker network create network_name</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>container name already in use</code></td>
+                                    <td>Контейнер с таким именем существует</td>
+                                    <td><code>docker rm container_name</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>executable file not found</code></td>
+                                    <td>Неверная команда в CMD/ENTRYPOINT</td>
+                                    <td>Проверить путь к исполняемому файлу</td>
+                                </tr>
+                                <tr>
+                                    <td><code>exit code 137</code></td>
+                                    <td>Контейнер убит из-за нехватки памяти</td>
+                                    <td>Увеличить лимит памяти: <code>-m 2g</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="diagnostic-commands" class="content-section-block">
+                    <h2 class="content-heading">Полезные команды для диагностики</h2>
+                    <p>Набор команд для быстрой диагностики проблем с Docker.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Общая информация о Docker
+docker version
+docker info
+
+# Проверка статуса всех контейнеров
+docker ps -a
+
+# Просмотр логов
+docker logs container_name
+docker logs --tail 100 -f container_name
+
+# Информация о контейнере/образе
+docker inspect container_name
+docker inspect image_name
+
+# Статистика использования ресурсов
+docker stats
+docker stats --no-stream
+
+# Использование диска
+docker system df
+docker system df -v
+
+# Проверка сетей
+docker network ls
+docker network inspect network_name
+
+# Проверка volumes
+docker volume ls
+docker volume inspect volume_name
+
+# Выполнение команд внутри контейнера
+docker exec -it container_name /bin/bash
+docker exec container_name ps aux
+
+# События Docker в реальном времени
+docker events
+
+# Проверка health check
+docker inspect --format='{{.State.Health.Status}}' container_name</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="video" class="content-section-block">
+                    <h2 class="content-heading">Видео: Troubleshooting Docker</h2>
+                    <p>Практическое руководство по диагностике и устранению проблем Docker:</p>
+                    <div class="video-wrapper">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/7O1H9kr1CsA" title="Docker Troubleshooting" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
@@ -592,6 +723,14 @@ docker image prune -a --filter "until=720h"</code></pre>
                     <nav class="toc">
                         <h3 class="toc-title">На этой странице</h3>
                         <ul class="toc-list">
+                            <li><a href="#container-issues" class="toc-link">Проблемы с контейнерами</a></li>
+                            <li><a href="#image-issues" class="toc-link">Проблемы с образами</a></li>
+                            <li><a href="#network-issues" class="toc-link">Проблемы с сетью</a></li>
+                            <li><a href="#volume-issues" class="toc-link">Проблемы с volumes</a></li>
+                            <li><a href="#performance-issues" class="toc-link">Проблемы производительности</a></li>
+                            <li><a href="#common-errors" class="toc-link">Частые ошибки</a></li>
+                            <li><a href="#diagnostic-commands" class="toc-link">Команды диагностики</a></li>
+                            <li><a href="#video" class="toc-link">Видео</a></li>
                         </ul>
                     </nav>
                 </div>
