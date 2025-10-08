@@ -159,6 +159,52 @@
                     </div>
                 </section>
 
+                <section id="structure" class="content-section-block">
+                    <h2 class="content-heading">Структура файла docker-compose.yml</h2>
+                    <p>Файл <code>docker-compose.yml</code> использует формат YAML для описания сервисов, сетей и томов. Рассмотрим базовую структуру:</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">YAML</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>version: '3.8'
+
+services:
+  # Определение сервисов (контейнеров)
+  service_name:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    environment:
+      - ENV_VAR=value
+
+networks:
+  # Определение кастомных сетей
+  custom_network:
+    driver: bridge
+
+volumes:
+  # Определение именованных томов
+  data_volume:
+    driver: local</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">Основные секции</h3>
+                    <ul class="feature-list">
+                        <li><code>version</code> — версия формата Compose файла (обычно 3.8 или выше)</li>
+                        <li><code>services</code> — описание контейнеров и их конфигурации</li>
+                        <li><code>networks</code> — определение пользовательских сетей (опционально)</li>
+                        <li><code>volumes</code> — определение именованных томов для хранения данных (опционально)</li>
+                    </ul>
+
+                    <div class="info-block">
+                        <p><strong>Совет:</strong> Начиная с Docker Compose v2, команда изменилась с <code>docker-compose</code> на <code>docker compose</code> (без дефиса). Новая версия встроена в Docker CLI.</p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
