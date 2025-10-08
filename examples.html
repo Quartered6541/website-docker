@@ -551,6 +551,133 @@ docker-compose exec postgres pg_dump -U developer development_db > backup.sql</c
                     </div>
                 </section>
 
+                <section id="example5" class="content-section-block">
+                    <h2 class="content-heading">Пример 5: WordPress с MySQL</h2>
+                    <p>WordPress — одна из самых популярных CMS в мире. С Docker можно развернуть полноценный сайт на WordPress за несколько минут.</p>
+
+                    <h3 class="content-subheading">docker-compose.yml</h3>
+                    <div class="code-block-wrapper">
+                        <pre><code>version: '3.8'
+
+services:
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress_site
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress_password
+      WORDPRESS_DB_NAME: wordpress_db
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wp-content/themes:/var/www/html/wp-content/themes
+      - ./wp-content/plugins:/var/www/html/wp-content/plugins
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: wordpress_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: wordpress_db
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  wordpress_data:
+  mysql_data:</code></pre>
+                    </div>
+
+                    <h3 class="content-subheading">Запуск WordPress</h3>
+                    <div class="code-block-wrapper">
+                        <pre><code># Запустить WordPress
+docker-compose up -d
+
+# Открыть в браузере
+# http://localhost:8000
+
+# Следовать инструкциям установки WordPress
+
+# Просмотреть логи
+docker-compose logs -f wordpress
+
+# Остановить
+docker-compose down
+
+# Остановить и удалить данные (полная очистка)
+docker-compose down -v</code></pre>
+                    </div>
+
+                    <h3 class="content-subheading">Продвинутая конфигурация с SSL и phpMyAdmin</h3>
+                    <div class="code-block-wrapper">
+                        <pre><code>version: '3.8'
+
+services:
+  wordpress:
+    image: wordpress:latest
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress_password
+      WORDPRESS_DB_NAME: wordpress_db
+    volumes:
+      - wordpress_data:/var/www/html
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: wordpress_db
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root_password
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - wordpress
+
+volumes:
+  wordpress_data:
+  mysql_data:</code></pre>
+                    </div>
+
+                    <div class="info-block info-block-warning">
+                        <p><strong>Важно:</strong> При использовании WordPress в продакшене обязательно:</p>
+                        <ul class="feature-list">
+                            <li>Измените все пароли на надёжные</li>
+                            <li>Настройте регулярное резервное копирование</li>
+                            <li>Используйте HTTPS с настоящим SSL-сертификатом</li>
+                            <li>Ограничьте доступ к phpMyAdmin</li>
+                        </ul>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
