@@ -332,6 +332,156 @@ USER appuser</code></pre>
                     </div>
                 </section>
 
+                <section id="examples" class="content-section-block">
+                    <h2 class="content-heading">Примеры Dockerfile</h2>
+                    <p>Рассмотрим практические примеры создания Dockerfile для различных типов приложений.</p>
+
+                    <h3 class="content-subheading">Пример 1: Node.js приложение</h3>
+                    <p>Dockerfile для веб-приложения на Node.js с Express.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Используем официальный образ Node.js
+FROM node:18-alpine
+
+# Устанавливаем рабочую директорию
+WORKDIR /app
+
+# Копируем package.json и package-lock.json
+COPY package*.json ./
+
+# Устанавливаем зависимости
+RUN npm ci --only=production
+
+# Копируем исходный код приложения
+COPY . .
+
+# Открываем порт
+EXPOSE 3000
+
+# Создаем пользователя без прав root
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
+
+# Переключаемся на пользователя nodejs
+USER nodejs
+
+# Запускаем приложение
+CMD ["node", "server.js"]</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">Пример 2: Python приложение</h3>
+                    <p>Dockerfile для Flask или Django приложения.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Базовый образ Python
+FROM python:3.11-slim
+
+# Установка переменных окружения
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+# Рабочая директория
+WORKDIR /app
+
+# Установка системных зависимостей
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc && \
+    rm -rf /var/lib/apt/lists/*
+
+# Копирование requirements и установка пакетов
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копирование кода приложения
+COPY . .
+
+# Создание непривилегированного пользователя
+RUN useradd -m -u 1000 appuser && \
+    chown -R appuser:appuser /app
+
+USER appuser
+
+# Открытие порта
+EXPOSE 8000
+
+# Запуск приложения
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">Пример 3: Nginx веб-сервер</h3>
+                    <p>Dockerfile для статического сайта с Nginx.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Используем официальный образ Nginx
+FROM nginx:alpine
+
+# Копируем статические файлы
+COPY ./dist /usr/share/nginx/html
+
+# Копируем кастомную конфигурацию Nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Открываем порт 80
+EXPOSE 80
+
+# Nginx запускается автоматически
+CMD ["nginx", "-g", "daemon off;"]</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">Пример 4: Multi-stage сборка (React приложение)</h3>
+                    <p>Многоэтапная сборка для оптимизации размера образа React-приложения.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Этап 1: Сборка приложения
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+RUN npm run build
+
+# Этап 2: Production образ
+FROM nginx:alpine
+
+# Копируем собранное приложение из builder
+COPY --from=builder /app/build /usr/share/nginx/html
+
+# Копируем конфигурацию nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-block">
+                        <p><strong>Multi-stage builds:</strong> Многоэтапная сборка позволяет значительно уменьшить размер финального образа, оставляя только необходимые файлы и исключая инструменты сборки.</p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
