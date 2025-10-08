@@ -209,6 +209,105 @@ RUN apt-get update && \
                     </div>
                 </section>
 
+                <section id="security" class="content-section-block">
+                    <h2 class="content-heading">Безопасность контейнеров</h2>
+                    <p>Безопасность — критически важный аспект работы с Docker, особенно в продакшн-окружении. Следование best practices по безопасности защитит ваши приложения от уязвимостей.</p>
+
+                    <h3 class="content-subheading">1. Не запускайте процессы от root</h3>
+                    <p>По умолчанию процессы в контейнере запускаются от пользователя root. Это создает потенциальную угрозу безопасности. Создавайте отдельного пользователя с ограниченными правами.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>FROM node:18-alpine
+
+# Создаем непривилегированного пользователя
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
+
+# Устанавливаем пользователя
+USER nodejs
+
+WORKDIR /app
+COPY --chown=nodejs:nodejs . .
+
+CMD ["node", "index.js"]</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">2. Используйте официальные образы</h3>
+                    <p>Всегда отдавайте предпочтение официальным образам из Docker Hub. Они регулярно обновляются и проверяются на уязвимости. Избегайте образов от неизвестных авторов.</p>
+
+                    <ul class="feature-list">
+                        <li><strong>Официальные образы</strong> отмечены специальным значком на Docker Hub</li>
+                        <li><strong>Проверенные образы</strong> (Docker Official Images) проходят автоматическое сканирование безопасности</li>
+                        <li><strong>Указывайте конкретные версии</strong> образов, а не тег <code>latest</code></li>
+                    </ul>
+
+                    <h3 class="content-subheading">3. Сканируйте образы на уязвимости</h3>
+                    <p>Регулярно проверяйте образы на наличие известных уязвимостей с помощью инструментов сканирования, таких как Docker Scout, Trivy или Snyk.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Сканирование образа с помощью Docker Scout
+docker scout cves myapp:latest
+
+# Сканирование с помощью Trivy
+docker run aquasec/trivy image myapp:latest</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">4. Не храните секреты в образах</h3>
+                    <p>Никогда не включайте пароли, API-ключи или другие секреты непосредственно в Dockerfile или в код. Используйте переменные окружения или специализированные инструменты управления секретами.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Плохо: хардкод секретов в Dockerfile
+ENV API_KEY=super_secret_key_12345
+
+# Хорошо: передача через переменные окружения при запуске
+docker run -e API_KEY=$API_KEY myapp:latest
+
+# Еще лучше: использование Docker Secrets (в Swarm)
+docker secret create api_key ./api_key.txt
+docker service create --secret api_key myapp:latest</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">5. Ограничивайте возможности контейнера</h3>
+                    <p>Используйте флаги безопасности при запуске контейнеров для ограничения их возможностей.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Запуск контейнера с ограниченными правами
+docker run --read-only \
+  --security-opt=no-new-privileges \
+  --cap-drop=ALL \
+  myapp:latest</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-block info-block-warning">
+                        <h3 class="info-block-title">Важно!</h3>
+                        <p>Регулярно обновляйте базовые образы и зависимости. Многие уязвимости могут быть устранены простым обновлением версий пакетов.</p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
