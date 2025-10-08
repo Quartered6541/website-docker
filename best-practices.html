@@ -308,6 +308,111 @@ docker run --read-only \
                     </div>
                 </section>
 
+                <section id="data-management" class="content-section-block">
+                    <h2 class="content-heading">Управление данными</h2>
+                    <p>Правильное управление данными в Docker важно для обеспечения персистентности, производительности и безопасности ваших приложений.</p>
+
+                    <h3 class="content-subheading">1. Используйте Docker Volumes для персистентных данных</h3>
+                    <p>Данные, хранящиеся внутри контейнера, теряются при его удалении. Для сохранения важных данных используйте Docker Volumes — это специальные директории, которые существуют независимо от жизненного цикла контейнера.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Создание именованного volume
+docker volume create postgres_data
+
+# Использование volume при запуске контейнера
+docker run -v postgres_data:/var/lib/postgresql/data postgres:15
+
+# В docker-compose.yml
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">2. Используйте .dockerignore</h3>
+                    <p>Файл <code>.dockerignore</code> работает аналогично <code>.gitignore</code> и позволяет исключить ненужные файлы из контекста сборки. Это ускоряет сборку и уменьшает размер образа.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">.dockerignore</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Игнорирование Git и IDE файлов
+.git
+.gitignore
+.idea
+.vscode
+
+# Игнорирование зависимостей
+node_modules
+__pycache__
+*.pyc
+
+# Игнорирование логов и временных файлов
+*.log
+tmp/
+temp/
+
+# Игнорирование документации
+README.md
+docs/
+
+# Игнорирование файлов разработки
+docker-compose.yml
+Dockerfile
+.env</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">3. Очищайте временные файлы в том же слое</h3>
+                    <p>При установке пакетов или компиляции кода очищайте временные файлы в той же инструкции <code>RUN</code>, чтобы они не попали в финальный образ.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Плохо: временные файлы остаются в образе
+RUN apt-get update
+RUN apt-get install -y build-essential
+RUN apt-get clean
+
+# Хорошо: очистка в том же слое
+RUN apt-get update && \
+    apt-get install -y build-essential && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">4. Разделяйте данные и код</h3>
+                    <p>Не храните изменяемые данные приложения внутри образа. Используйте volumes для баз данных, загруженных файлов, кэша и других динамических данных.</p>
+
+                    <ul class="feature-list">
+                        <li><strong>Named volumes</strong> — управляемые Docker, лучший вариант для продакшена</li>
+                        <li><strong>Bind mounts</strong> — привязка к директориям хоста, удобно для разработки</li>
+                        <li><strong>tmpfs mounts</strong> — временное хранилище в памяти для чувствительных данных</li>
+                    </ul>
+
+                    <div class="info-block">
+                        <h3 class="info-block-title">Совет</h3>
+                        <p>Регулярно очищайте неиспользуемые volumes командой <code>docker volume prune</code>, чтобы освободить дисковое пространство.</p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
