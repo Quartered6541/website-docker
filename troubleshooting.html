@@ -333,6 +333,104 @@ RUN npm install express@4.18.2</code></pre>
                     </div>
                 </section>
 
+                <section id="network-issues" class="content-section-block">
+                    <h2 class="content-heading">Проблемы с сетью</h2>
+                    <p>Сетевые проблемы могут помешать контейнерам взаимодействовать друг с другом или с внешним миром.</p>
+
+                    <h3 class="content-subheading">1. Контейнеры не видят друг друга</h3>
+                    <p>Контейнеры должны находиться в одной Docker сети, чтобы общаться друг с другом.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Просмотр доступных сетей
+docker network ls
+
+# Создание пользовательской сети
+docker network create mynetwork
+
+# Запуск контейнеров в одной сети
+docker run --network mynetwork --name web nginx
+docker run --network mynetwork --name db postgres
+
+# Подключение существующего контейнера к сети
+docker network connect mynetwork container_name
+
+# Проверка сетевых настроек контейнера
+docker inspect container_name | grep -A 20 Networks</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">2. Порты недоступны с хоста</h3>
+                    <p>Порт контейнера должен быть явно опубликован, чтобы быть доступным с хоста.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Проверка опубликованных портов
+docker port container_name
+
+# Запуск с публикацией порта
+docker run -p 8080:80 nginx
+
+# Публикация на конкретном интерфейсе
+docker run -p 127.0.0.1:8080:80 nginx
+
+# Проверка, что порт слушается
+netstat -tulpn | grep 8080</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">3. Конфликт портов</h3>
+                    <p>Порт уже занят другим процессом или контейнером.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Проверка, какой процесс использует порт
+sudo lsof -i :8080
+sudo netstat -tulpn | grep :8080
+
+# Остановка контейнера, занимающего порт
+docker ps --filter "publish=8080"
+docker stop container_name
+
+# Использование другого порта
+docker run -p 8081:80 nginx</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">4. DNS не работает внутри контейнера</h3>
+                    <p>Контейнер не может разрешить доменные имена.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Проверка DNS внутри контейнера
+docker exec container_name ping google.com
+docker exec container_name nslookup google.com
+
+# Указание DNS серверов при запуске
+docker run --dns 8.8.8.8 --dns 8.8.4.4 nginx
+
+# Проверка настроек DNS
+docker exec container_name cat /etc/resolv.conf</code></pre>
+                        </div>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
