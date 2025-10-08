@@ -116,6 +116,104 @@
             <!-- Main Content -->
             <main class="content-main">
 
+                <section id="container-issues" class="content-section-block">
+                    <h2 class="content-heading">Проблемы с контейнерами</h2>
+                    <p>Рассмотрим наиболее частые проблемы, возникающие при работе с Docker контейнерами, и способы их решения.</p>
+
+                    <h3 class="content-subheading">1. Контейнер не запускается</h3>
+                    <p>Если контейнер не запускается, первым делом проверьте логи для выявления причины ошибки.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Просмотр логов контейнера
+docker logs container_name
+
+# Просмотр последних 50 строк логов
+docker logs --tail 50 container_name
+
+# Просмотр логов в реальном времени
+docker logs -f container_name</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-block info-block-warning">
+                        <h3 class="info-block-title">Частые причины:</h3>
+                        <ul class="feature-list">
+                            <li>Отсутствие необходимых переменных окружения</li>
+                            <li>Неправильная команда запуска в CMD или ENTRYPOINT</li>
+                            <li>Недостаточно прав доступа к файлам или портам</li>
+                            <li>Конфликт портов с другим контейнером или процессом</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="content-subheading">2. Контейнер останавливается сразу после запуска</h3>
+                    <p>Контейнер завершает работу, если главный процесс (определённый в CMD/ENTRYPOINT) завершается.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Проверка статуса и кода выхода
+docker ps -a
+docker inspect container_name | grep ExitCode
+
+# Запуск контейнера с интерактивным режимом для отладки
+docker run -it --entrypoint /bin/sh image_name</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">3. Как попасть внутрь работающего контейнера</h3>
+                    <p>Для отладки часто необходимо зайти внутрь контейнера и проверить его состояние.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Выполнить bash в работающем контейнере
+docker exec -it container_name /bin/bash
+
+# Если bash недоступен (Alpine Linux)
+docker exec -it container_name /bin/sh
+
+# Выполнить одну команду без входа в контейнер
+docker exec container_name ls -la /app</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">4. Контейнер не реагирует на сигналы остановки</h3>
+                    <p>Иногда контейнер "зависает" и не останавливается по команде <code>docker stop</code>.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Принудительная остановка контейнера
+docker kill container_name
+
+# Остановка всех запущенных контейнеров
+docker stop $(docker ps -q)
+
+# Удаление "зависшего" контейнера
+docker rm -f container_name</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-block">
+                        <h3 class="info-block-title">Совет</h3>
+                        <p>Используйте <code>docker inspect container_name</code> для получения полной информации о конфигурации и состоянии контейнера. Это часто помогает найти причину проблемы.</p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
