@@ -205,6 +205,166 @@ volumes:
                     </div>
                 </section>
 
+                <section id="directives" class="content-section-block">
+                    <h2 class="content-heading">Основные директивы сервисов</h2>
+                    <p>Рассмотрим наиболее важные параметры для настройки сервисов в docker-compose.yml.</p>
+
+                    <h3 class="content-subheading">image - Образ контейнера</h3>
+                    <p>Указывает Docker-образ для создания контейнера.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">YAML</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>services:
+  web:
+    image: nginx:alpine
+  db:
+    image: postgres:15</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">build - Сборка из Dockerfile</h3>
+                    <p>Указывает путь к Dockerfile для сборки образа.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">YAML</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>services:
+  app:
+    build: .
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.dev</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">ports - Проброс портов</h3>
+                    <p>Связывает порты хоста с портами контейнера.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">YAML</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"      # хост:контейнер
+      - "443:443"</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">environment - Переменные окружения</h3>
+                    <p>Задает переменные окружения для контейнера.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">YAML</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: mydb</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">volumes - Монтирование томов</h3>
+                    <p>Монтирует директории или именованные тома в контейнер.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">YAML</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>services:
+  app:
+    image: node:18
+    volumes:
+      - ./app:/usr/src/app      # bind mount
+      - node_modules:/usr/src/app/node_modules  # именованный том
+
+volumes:
+  node_modules:</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">depends_on - Зависимости</h3>
+                    <p>Определяет порядок запуска сервисов.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">YAML</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>services:
+  web:
+    image: nginx
+    depends_on:
+      - api
+      - db
+  api:
+    build: .
+    depends_on:
+      - db
+  db:
+    image: postgres</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">networks - Подключение к сетям</h3>
+                    <p>Подключает сервис к определенным сетям.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">YAML</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>services:
+  web:
+    image: nginx
+    networks:
+      - frontend
+  db:
+    image: postgres
+    networks:
+      - backend
+
+networks:
+  frontend:
+  backend:</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">restart - Политика перезапуска</h3>
+                    <p>Определяет, когда контейнер должен перезапускаться.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">YAML</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>services:
+  web:
+    image: nginx
+    restart: always  # no, always, on-failure, unless-stopped</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-block info-block-warning">
+                        <p><strong>Важно:</strong> Директива <code>depends_on</code> запускает сервисы в указанном порядке, но не ждёт полной готовности зависимых сервисов. Для этого используйте wait-for скрипты или healthcheck.</p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
