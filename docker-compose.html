@@ -115,7 +115,50 @@
         <div class="content-layout">
             <!-- Main Content -->
             <main class="content-main">
-                <!-- Контент будет добавлен далее -->
+
+                <section id="intro" class="content-section-block">
+                    <h2 class="content-heading">Что такое Docker Compose?</h2>
+                    <p>Docker Compose — это инструмент для определения и запуска многоконтейнерных Docker-приложений. С помощью одного YAML-файла вы можете настроить все сервисы вашего приложения, а затем запустить или остановить всё одной командой.</p>
+
+                    <p>Docker Compose решает следующие задачи:</p>
+                    <ul class="feature-list">
+                        <li><strong>Упрощает запуск</strong> многоконтейнерных приложений</li>
+                        <li><strong>Автоматизирует</strong> создание сетей и томов</li>
+                        <li><strong>Обеспечивает воспроизводимость</strong> окружения разработки</li>
+                        <li><strong>Управляет зависимостями</strong> между контейнерами</li>
+                        <li><strong>Упрощает масштабирование</strong> сервисов</li>
+                    </ul>
+
+                    <div class="info-block">
+                        <p><strong>Важно:</strong> Docker Compose отлично подходит для локальной разработки и тестирования. Для production-среды рассмотрите использование оркестраторов, таких как Kubernetes или Docker Swarm.</p>
+                    </div>
+                </section>
+
+                <section id="why" class="content-section-block">
+                    <h2 class="content-heading">Зачем нужен Docker Compose?</h2>
+                    <p>Представьте, что ваше приложение состоит из веб-сервера, базы данных, кэша Redis и фоновых воркеров. Без Docker Compose вам нужно:</p>
+
+                    <ol class="feature-list">
+                        <li>Вручную создать сеть для связи контейнеров</li>
+                        <li>Запустить контейнер с базой данных с правильными параметрами</li>
+                        <li>Запустить контейнер с Redis</li>
+                        <li>Запустить веб-сервер с правильными переменными окружения</li>
+                        <li>Запустить воркеры</li>
+                        <li>Помнить все эти команды и повторять их каждый раз</li>
+                    </ol>
+
+                    <p>С Docker Compose всё это описывается в одном файле <code>docker-compose.yml</code>, и запускается одной командой:</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>docker compose up</code></pre>
+                        </div>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
