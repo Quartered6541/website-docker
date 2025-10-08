@@ -431,6 +431,159 @@ docker exec container_name cat /etc/resolv.conf</code></pre>
                     </div>
                 </section>
 
+                <section id="volume-issues" class="content-section-block">
+                    <h2 class="content-heading">Проблемы с volumes и данными</h2>
+                    <p>Управление персистентными данными в Docker требует понимания работы с volumes.</p>
+
+                    <h3 class="content-subheading">1. Данные не сохраняются после перезапуска контейнера</h3>
+                    <p>Данные, записанные внутри контейнера, теряются при его удалении, если не используются volumes.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Создание volume
+docker volume create mydata
+
+# Использование volume при запуске
+docker run -v mydata:/var/lib/mysql mysql:8
+
+# Просмотр существующих volumes
+docker volume ls
+
+# Информация о volume
+docker volume inspect mydata</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">2. Ошибки прав доступа к файлам</h3>
+                    <p>Контейнер не может читать или записывать файлы из-за неправильных прав доступа.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Проверка прав на файлы в volume
+docker exec container_name ls -la /path/to/data
+
+# Изменение владельца файлов
+docker exec container_name chown -R user:group /path/to/data
+
+# Запуск контейнера с конкретным пользователем
+docker run -u 1000:1000 -v mydata:/data myapp
+
+# Монтирование с правами только для чтения
+docker run -v mydata:/data:ro nginx</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">3. Volume занимает много места</h3>
+                    <p>Неочищенные данные в volumes могут накапливаться и занимать дисковое пространство.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Просмотр размера volumes
+docker system df -v
+
+# Удаление неиспользуемых volumes
+docker volume prune
+
+# Удаление конкретного volume
+docker volume rm volume_name
+
+# Удаление всего неиспользуемого (volumes, images, networks)
+docker system prune -a --volumes</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="performance-issues" class="content-section-block">
+                    <h2 class="content-heading">Проблемы производительности</h2>
+                    <p>Низкая производительность контейнеров может быть связана с различными факторами.</p>
+
+                    <h3 class="content-subheading">1. Контейнер работает медленно</h3>
+                    <p>Несколько причин могут замедлять работу контейнера.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Просмотр использования ресурсов
+docker stats container_name
+
+# Проверка логов на ошибки
+docker logs container_name | grep -i error
+
+# Увеличение лимитов ресурсов
+docker update --memory 2g --cpus 2 container_name
+
+# Перезапуск контейнера
+docker restart container_name</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">2. Высокое потребление ресурсов</h3>
+                    <p>Контейнер потребляет слишком много CPU или памяти.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Ограничение ресурсов при запуске
+docker run -m 512m --cpus="1.5" nginx
+
+# Проверка процессов внутри контейнера
+docker exec container_name top
+
+# Анализ использования памяти
+docker stats --no-stream</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">3. Проблемы с дисковым пространством</h3>
+                    <p>Закончилось место на диске из-за накопления образов, контейнеров и volumes.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Проверка использования дискового пространства Docker
+docker system df
+
+# Подробная информация
+docker system df -v
+
+# Очистка неиспользуемых ресурсов
+docker system prune
+
+# Агрессивная очистка (удаляет все неиспользуемое)
+docker system prune -a --volumes
+
+# Удаление старых образов
+docker image prune -a --filter "until=720h"</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-block info-block-warning">
+                        <h3 class="info-block-title">Внимание!</h3>
+                        <p>Команда <code>docker system prune -a --volumes</code> удаляет ВСЕ неиспользуемые образы, контейнеры, сети и volumes. Используйте с осторожностью!</p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
