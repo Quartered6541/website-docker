@@ -221,6 +221,94 @@ docker-compose down</code></pre>
                     </div>
                 </section>
 
+                <section id="example2" class="content-section-block">
+                    <h2 class="content-heading">Пример 2: Python-приложение для машинного обучения</h2>
+                    <p>Docker отлично подходит для проектов машинного обучения, так как позволяет изолировать сложные зависимости вроде TensorFlow, PyTorch и различных научных библиотек.</p>
+
+                    <h3 class="content-subheading">Dockerfile для ML-проекта</h3>
+                    <div class="code-block-wrapper">
+                        <pre><code>FROM python:3.11-slim
+
+WORKDIR /app
+
+# Установка системных зависимостей
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Копирование requirements
+COPY requirements.txt .
+
+# Установка Python зависимостей
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копирование кода приложения
+COPY . .
+
+# Создание директории для моделей
+RUN mkdir -p /app/models
+
+EXPOSE 8000
+
+CMD ["python", "app.py"]</code></pre>
+                    </div>
+
+                    <h3 class="content-subheading">requirements.txt</h3>
+                    <div class="code-block-wrapper">
+                        <pre><code>numpy==1.24.3
+pandas==2.0.3
+scikit-learn==1.3.0
+tensorflow==2.13.0
+flask==2.3.2
+gunicorn==21.2.0</code></pre>
+                    </div>
+
+                    <h3 class="content-subheading">docker-compose.yml</h3>
+                    <p>Конфигурация с GPU-поддержкой (опционально):</p>
+                    <div class="code-block-wrapper">
+                        <pre><code>version: '3.8'
+
+services:
+  ml-app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
+    # Раскомментировать для GPU
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]</code></pre>
+                    </div>
+
+                    <h3 class="content-subheading">Запуск</h3>
+                    <div class="code-block-wrapper">
+                        <pre><code># Сборка образа
+docker-compose build
+
+# Запуск приложения
+docker-compose up
+
+# Выполнение скрипта обучения
+docker-compose exec ml-app python train.py
+
+# Запуск Jupyter Notebook (добавьте jupyter в requirements.txt)
+docker-compose exec ml-app jupyter notebook --ip=0.0.0.0 --allow-root</code></pre>
+                    </div>
+
+                    <div class="info-block info-block-warning">
+                        <p><strong>Совет:</strong> Для больших ML-проектов рекомендуется использовать специализированные базовые образы вроде <code>tensorflow/tensorflow</code> или <code>pytorch/pytorch</code>, которые уже содержат оптимизированные библиотеки.</p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
