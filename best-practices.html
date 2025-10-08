@@ -116,6 +116,99 @@
             <!-- Main Content -->
             <main class="content-main">
 
+                <section id="optimization" class="content-section-block">
+                    <h2 class="content-heading">Оптимизация размера образов</h2>
+                    <p>Одна из ключевых задач при работе с Docker — создание компактных и эффективных образов. Размер образа напрямую влияет на скорость развертывания, использование дискового пространства и безопасность.</p>
+
+                    <h3 class="content-subheading">1. Используйте минимальные базовые образы</h3>
+                    <p>Вместо полноразмерных дистрибутивов Linux используйте минимальные варианты, такие как Alpine Linux. Alpine весит всего около 5 МБ, что значительно меньше, чем Ubuntu или Debian.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Плохо: использование полноразмерного образа
+FROM ubuntu:latest
+
+# Хорошо: использование Alpine
+FROM node:18-alpine</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">2. Многоэтапные сборки (Multi-stage builds)</h3>
+                    <p>Многоэтапные сборки позволяют использовать несколько инструкций <code>FROM</code> в одном Dockerfile. Это помогает отделить этап сборки от финального образа, исключая ненужные инструменты разработки.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Этап сборки
+FROM node:18 AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# Этап продакшена
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+CMD ["node", "dist/index.js"]</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">3. Правильный порядок инструкций</h3>
+                    <p>Docker кэширует слои образа. Размещайте инструкции, которые меняются реже, в начале Dockerfile, а те, что меняются чаще — ближе к концу.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Сначала копируем файлы зависимостей (меняются редко)
+COPY package*.json ./
+RUN npm install
+
+# Потом копируем исходный код (меняется часто)
+COPY . .</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">4. Объединяйте RUN команды</h3>
+                    <p>Каждая инструкция <code>RUN</code> создает новый слой. Объединение команд в одну инструкцию уменьшает количество слоев и размер образа.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Плохо: каждая команда создает новый слой
+RUN apt-get update
+RUN apt-get install -y curl
+RUN apt-get clean
+
+# Хорошо: объединение команд
+RUN apt-get update && \
+    apt-get install -y curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-block">
+                        <h3 class="info-block-title">Совет</h3>
+                        <p>Используйте <code>.dockerignore</code> файл, чтобы исключить ненужные файлы из контекста сборки. Это ускорит процесс сборки и уменьшит размер образа.</p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
