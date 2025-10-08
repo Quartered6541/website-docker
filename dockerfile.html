@@ -171,6 +171,167 @@ CMD ["исполняемый_файл", "параметр1", "параметр2"
                     </ul>
                 </section>
 
+                <section id="instructions" class="content-section-block">
+                    <h2 class="content-heading">Основные инструкции Dockerfile</h2>
+                    <p>Рассмотрим наиболее важные инструкции для создания Docker-образов.</p>
+
+                    <h3 class="content-subheading">FROM - Базовый образ</h3>
+                    <p>Указывает базовый образ, от которого наследуется новый образ. Должна быть первой инструкцией.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>FROM ubuntu:22.04
+FROM node:18-alpine
+FROM python:3.11-slim</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">RUN - Выполнение команд</h3>
+                    <p>Выполняет команды в новом слое образа. Используется для установки пакетов и настройки окружения.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>RUN apt-get update && apt-get install -y nginx
+RUN npm install
+RUN pip install -r requirements.txt</code></pre>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <p><strong>Совет:</strong> Объединяйте несколько команд RUN с помощью <code>&&</code> для уменьшения количества слоев образа.</p>
+                    </div>
+
+                    <h3 class="content-subheading">COPY и ADD - Копирование файлов</h3>
+                    <p><code>COPY</code> копирует файлы и директории из контекста сборки в образ.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>COPY package.json /app/
+COPY . /app
+COPY --chown=user:group files* /mydir/</code></pre>
+                        </div>
+                    </div>
+                    <p><code>ADD</code> имеет дополнительные возможности: автоматическая распаковка tar-архивов и загрузка файлов по URL.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>ADD archive.tar.gz /app/
+ADD https://example.com/file.txt /downloads/</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">WORKDIR - Рабочая директория</h3>
+                    <p>Устанавливает рабочую директорию для последующих инструкций RUN, CMD, ENTRYPOINT, COPY и ADD.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>WORKDIR /app
+COPY . .
+RUN npm install</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">ENV - Переменные окружения</h3>
+                    <p>Устанавливает переменные окружения, которые будут доступны во время сборки и выполнения контейнера.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>ENV NODE_ENV=production
+ENV PORT=3000
+ENV PATH="/app/bin:${PATH}"</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">EXPOSE - Открытие портов</h3>
+                    <p>Документирует, какие порты приложение использует. Не публикует порты автоматически.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>EXPOSE 80
+EXPOSE 443
+EXPOSE 3000/tcp</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">CMD - Команда по умолчанию</h3>
+                    <p>Определяет команду, которая будет выполнена при запуске контейнера. Может быть переопределена при запуске.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>CMD ["nginx", "-g", "daemon off;"]
+CMD ["node", "server.js"]
+CMD ["python", "app.py"]</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">ENTRYPOINT - Точка входа</h3>
+                    <p>Устанавливает основную команду контейнера, которая всегда будет выполняться. Аргументы CMD передаются как параметры.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">VOLUME - Монтирование томов</h3>
+                    <p>Создает точку монтирования для хранения постоянных данных.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>VOLUME /data
+VOLUME ["/var/log", "/var/db"]</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">USER - Смена пользователя</h3>
+                    <p>Устанавливает пользователя для выполнения команд RUN, CMD и ENTRYPOINT.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>USER nginx
+USER 1000:1000
+USER appuser</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-block info-block-warning">
+                        <p><strong>Безопасность:</strong> Рекомендуется запускать приложения не от имени root. Создайте пользователя с помощью RUN и переключитесь на него через USER.</p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
