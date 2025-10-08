@@ -482,6 +482,104 @@ CMD ["nginx", "-g", "daemon off;"]</code></pre>
                     </div>
                 </section>
 
+                <section id="reference" class="content-section-block">
+                    <h2 class="content-heading">Справочная таблица инструкций Dockerfile</h2>
+                    <p>Полный список наиболее используемых инструкций с кратким описанием.</p>
+
+                    <div class="table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Инструкция</th>
+                                    <th>Описание</th>
+                                    <th>Пример</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>FROM</code></td>
+                                    <td>Задает базовый образ для сборки</td>
+                                    <td><code>FROM ubuntu:22.04</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>RUN</code></td>
+                                    <td>Выполняет команды при сборке образа</td>
+                                    <td><code>RUN apt-get update</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>COPY</code></td>
+                                    <td>Копирует файлы из контекста в образ</td>
+                                    <td><code>COPY app.py /app/</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ADD</code></td>
+                                    <td>Копирует и распаковывает файлы</td>
+                                    <td><code>ADD archive.tar.gz /app/</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>WORKDIR</code></td>
+                                    <td>Устанавливает рабочую директорию</td>
+                                    <td><code>WORKDIR /app</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ENV</code></td>
+                                    <td>Задает переменные окружения</td>
+                                    <td><code>ENV NODE_ENV=production</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ARG</code></td>
+                                    <td>Определяет аргументы для сборки</td>
+                                    <td><code>ARG VERSION=1.0</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>EXPOSE</code></td>
+                                    <td>Документирует используемые порты</td>
+                                    <td><code>EXPOSE 80</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>CMD</code></td>
+                                    <td>Команда по умолчанию при запуске</td>
+                                    <td><code>CMD ["python", "app.py"]</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ENTRYPOINT</code></td>
+                                    <td>Задает исполняемый файл контейнера</td>
+                                    <td><code>ENTRYPOINT ["npm", "start"]</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>VOLUME</code></td>
+                                    <td>Создает точку монтирования</td>
+                                    <td><code>VOLUME /data</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>USER</code></td>
+                                    <td>Устанавливает пользователя</td>
+                                    <td><code>USER appuser</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>LABEL</code></td>
+                                    <td>Добавляет метаданные к образу</td>
+                                    <td><code>LABEL version="1.0"</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>HEALTHCHECK</code></td>
+                                    <td>Проверяет здоровье контейнера</td>
+                                    <td><code>HEALTHCHECK CMD curl -f http://localhost/</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>SHELL</code></td>
+                                    <td>Переопределяет shell по умолчанию</td>
+                                    <td><code>SHELL ["/bin/bash", "-c"]</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="info-block">
+                        <p><strong>Совет:</strong> Для получения подробной информации о каждой инструкции используйте официальную документацию Docker: <a href="https://docs.docker.com/reference/dockerfile/" target="_blank">Dockerfile reference</a></p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
