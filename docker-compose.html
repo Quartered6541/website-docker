@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оркестрация контейнеров (Docker Compose) - Docker Tutorial</title>
+    <link href="https://unpkg.com/@primer/css@^21.0.0/dist/primer.css" rel="stylesheet">
+    <link href="css/styles.css?v=4" rel="stylesheet">
+</head>
+<body class="d-flex flex-column body-wrapper">
+    <header class="Header main-header" id="main-header">
+        <div class="header-container">
+            <div class="header-logo-box">
+                <h1>🐳 Docker Tutorial</h1>
+            </div>
+
+            <button id="burger-menu" class="btn burger-menu-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <nav class="desktop-navigation" id="desktop-nav">
+                <ul class="d-flex flex-wrap list-style-none p-0 m-0">
+                    <li class="dropdown">
+                        <button class="btn btn-sm dropdown-toggle">Основы</button>
+                        <ul class="dropdown-menu">
+                            <li><a href="what-is-docker.html">Что такое Docker</a></li>
+                            <li><a href="installation.html">Установка Docker</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <button class="btn btn-sm btn-primary dropdown-toggle">Работа с Docker</button>
+                        <ul class="dropdown-menu">
+                            <li><a href="commands.html">Основные команды</a></li>
+                            <li><a href="dockerfile.html">Создание образов (Dockerfile)</a></li>
+                            <li><a href="docker-compose.html">Оркестрация контейнеров (Docker Compose)</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <button class="btn btn-sm dropdown-toggle">Практика</button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Примеры использования</a></li>
+                            <li><a href="#">Лучшие практики</a></li>
+                            <li><a href="#">Решение проблем</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#" class="btn btn-sm">Ресурсы</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <nav id="mobile-nav" class="mobile-navigation">
+        <ul class="list-style-none p-0 m-0">
+            <li class="border-bottom mobile-menu-border"><a href="index.html" class="mobile-menu-item">Главная</a></li>
+
+            <!-- Группа: Основы -->
+            <li class="border-bottom mobile-dropdown mobile-menu-border">
+                <button class="mobile-dropdown-toggle">
+                    Основы <span class="mobile-dropdown-arrow">▼</span>
+                </button>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="what-is-docker.html" class="mobile-submenu-item">Что такое Docker</a></li>
+                    <li><a href="installation.html" class="mobile-submenu-item">Установка Docker</a></li>
+                </ul>
+            </li>
+
+            <!-- Группа: Работа с Docker -->
+            <li class="border-bottom mobile-dropdown mobile-menu-border">
+                <button class="mobile-dropdown-toggle">
+                    Работа с Docker <span class="mobile-dropdown-arrow">▼</span>
+                </button>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="commands.html" class="mobile-submenu-item">Основные команды</a></li>
+                    <li><a href="dockerfile.html" class="mobile-submenu-item">Создание образов (Dockerfile)</a></li>
+                    <li><a href="docker-compose.html" class="mobile-submenu-item">Оркестрация контейнеров (Docker Compose)</a></li>
+                </ul>
+            </li>
+
+            <!-- Группа: Практика -->
+            <li class="border-bottom mobile-dropdown mobile-menu-border">
+                <button class="mobile-dropdown-toggle">
+                    Практика <span class="mobile-dropdown-arrow">▼</span>
+                </button>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="#" class="mobile-submenu-item">Примеры использования</a></li>
+                    <li><a href="#" class="mobile-submenu-item">Лучшие практики</a></li>
+                    <li><a href="#" class="mobile-submenu-item">Решение проблем</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#" class="mobile-menu-item-secondary">Ресурсы и документация</a></li>
+        </ul>
+    </nav>
+
+    <div class="container-lg px-4 py-4">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+                <li class="breadcrumb-item"><span>Работа с Docker</span></li>
+                <li class="breadcrumb-item breadcrumb-item-active" aria-current="page">Оркестрация контейнеров (Docker Compose)</li>
+            </ol>
+        </nav>
+        <div class="page-header">
+            <h1 class="h1 mb-2">Оркестрация контейнеров (Docker Compose)</h1>
+            <p class="text-gray">Управление многоконтейнерными приложениями с помощью Docker Compose</p>
+        </div>
+    </div>
+
+    <div class="px-4 py-4 content-wrapper">
+        <div class="content-layout">
+            <!-- Main Content -->
+            <main class="content-main">
+                <!-- Контент будет добавлен далее -->
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="content-sidebar">
+                <div class="sidebar-sticky">
+                    <nav class="toc">
+                        <h3 class="toc-title">На этой странице</h3>
+                        <ul class="toc-list">
+                            <!-- Оглавление будет добавлено далее -->
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="p-4 footer-main">
+        <div class="container-lg">
+            <div class="d-flex flex-wrap flex-justify-between footer-gap">
+                <!-- Колонка 1: О проекте -->
+                <div class="footer-column">
+                    <h3 class="h4 mb-3">Docker Tutorial</h3>
+                    <p class="footer-text">Образовательный ресурс по контейнеризации и Docker для разработчиков</p>
+                </div>
+
+                <!-- Колонка 2: Полезные ссылки -->
+                <div class="footer-column">
+                    <h4 class="h5 mb-3">Полезные ссылки</h4>
+                    <ul class="list-style-none pl-0">
+                        <li class="mb-2"><a href="https://docs.docker.com" class="footer-link" target="_blank">Официальная документация</a></li>
+                        <li class="mb-2"><a href="https://hub.docker.com" class="footer-link" target="_blank">Docker Hub</a></li>
+                        <li class="mb-2"><a href="https://github.com/docker" class="footer-link" target="_blank">GitHub Docker</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3: Контакты -->
+                <div class="footer-column">
+                    <h4 class="h5 mb-3">Контакты</h4>
+                    <ul class="list-style-none pl-0">
+                        <li class="mb-2 footer-text">Email: info@dockertutorial.ru</li>
+                        <li class="mb-2 footer-text">Telegram: @dockertutorial</li>
+                        <li class="mb-2 footer-text">GitHub: github.com/dockertutorial</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Копирайт -->
+            <div class="text-center mt-4 pt-3 footer-divider">
+                <p class="m-0 footer-text">&copy; 2025 Docker Tutorial. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
