@@ -413,6 +413,147 @@ RUN apt-get update && \
                     </div>
                 </section>
 
+                <section id="performance" class="content-section-block">
+                    <h2 class="content-heading">Производительность и мониторинг</h2>
+                    <p>Оптимизация производительности контейнеров помогает эффективно использовать ресурсы и обеспечивает стабильную работу приложений.</p>
+
+                    <h3 class="content-subheading">1. Ограничение ресурсов контейнера</h3>
+                    <p>Всегда устанавливайте лимиты на использование CPU и памяти, чтобы предотвратить ситуации, когда один контейнер забирает все ресурсы системы.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Ограничение памяти и CPU при запуске
+docker run -m 512m --cpus="1.5" myapp:latest
+
+# В docker-compose.yml
+version: '3.8'
+services:
+  web:
+    image: myapp:latest
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">2. Используйте Health Checks</h3>
+                    <p>Health checks позволяют Docker автоматически определять, когда контейнер становится неработоспособным, и перезапускать его при необходимости.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>FROM node:18-alpine
+
+WORKDIR /app
+COPY . .
+
+# Определение health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD node healthcheck.js || exit 1
+
+CMD ["node", "index.js"]</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">docker-compose.yml</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>version: '3.8'
+services:
+  web:
+    image: myapp:latest
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 40s</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">3. Настройка логирования</h3>
+                    <p>Правильная настройка логирования предотвращает переполнение диска и упрощает отладку проблем.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Ограничение размера логов
+docker run --log-opt max-size=10m --log-opt max-file=3 myapp:latest
+
+# В docker-compose.yml
+version: '3.8'
+services:
+  web:
+    image: myapp:latest
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">4. Используйте restart policies</h3>
+                    <p>Политики перезапуска гарантируют, что контейнеры автоматически восстановятся после сбоя или перезагрузки хоста.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Политики перезапуска
+docker run --restart=no myapp:latest           # никогда не перезапускать
+docker run --restart=on-failure myapp:latest   # только при ошибке
+docker run --restart=always myapp:latest       # всегда перезапускать
+docker run --restart=unless-stopped myapp:latest  # всегда, кроме ручной остановки</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">5. Мониторинг контейнеров</h3>
+                    <p>Регулярно отслеживайте использование ресурсов контейнерами для выявления проблем производительности.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Просмотр использования ресурсов
+docker stats
+
+# Просмотр статистики конкретного контейнера
+docker stats container_name
+
+# Экспорт метрик в JSON
+docker stats --no-stream --format "{{json .}}"</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-block">
+                        <h3 class="info-block-title">Рекомендация</h3>
+                        <p>Для продакшн-окружения используйте специализированные инструменты мониторинга, такие как Prometheus, Grafana или cAdvisor, для более детального анализа производительности.</p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
