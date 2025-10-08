@@ -678,6 +678,158 @@ volumes:
                     </div>
                 </section>
 
+                <section id="example6" class="content-section-block">
+                    <h2 class="content-heading">Пример 6: Docker в CI/CD pipeline</h2>
+                    <p>Docker стал незаменимым инструментом для непрерывной интеграции и доставки (CI/CD). Рассмотрим примеры использования Docker в популярных CI/CD системах.</p>
+
+                    <h3 class="content-subheading">GitHub Actions</h3>
+                    <p>Пример workflow для сборки и публикации Docker-образа:</p>
+                    <div class="code-block-wrapper">
+                        <pre><code>name: Docker Build and Push
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: true
+        tags: username/app:latest,username/app:${{ github.sha }}
+
+    - name: Run tests in container
+      run: |
+        docker run username/app:latest npm test</code></pre>
+                    </div>
+
+                    <h3 class="content-subheading">GitLab CI</h3>
+                    <p>Файл <code>.gitlab-ci.yml</code> для автоматизации тестирования и деплоя:</p>
+                    <div class="code-block-wrapper">
+                        <pre><code>stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  DOCKER_IMAGE: registry.gitlab.com/$CI_PROJECT_PATH
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $DOCKER_IMAGE:$CI_COMMIT_SHA .
+    - docker push $DOCKER_IMAGE:$CI_COMMIT_SHA
+
+test:
+  stage: test
+  image: $DOCKER_IMAGE:$CI_COMMIT_SHA
+  script:
+    - npm test
+    - npm run lint
+
+deploy:
+  stage: deploy
+  image: docker:latest
+  only:
+    - main
+  script:
+    - docker pull $DOCKER_IMAGE:$CI_COMMIT_SHA
+    - docker tag $DOCKER_IMAGE:$CI_COMMIT_SHA $DOCKER_IMAGE:latest
+    - docker push $DOCKER_IMAGE:latest
+    # Команды для деплоя на сервер
+    - ssh user@server "docker pull $DOCKER_IMAGE:latest && docker-compose up -d"</code></pre>
+                    </div>
+
+                    <h3 class="content-subheading">Jenkins Pipeline</h3>
+                    <p>Jenkinsfile для Docker-based pipeline:</p>
+                    <div class="code-block-wrapper">
+                        <pre><code>pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = 'myapp'
+        DOCKER_TAG = "${env.BUILD_NUMBER}"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}")
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                script {
+                    docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").inside {
+                        sh 'npm test'
+                    }
+                }
+            }
+        }
+
+        stage('Push') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-credentials') {
+                        docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").push()
+                        docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").push('latest')
+                    }
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                    ssh user@production-server << EOF
+                    docker pull ${DOCKER_IMAGE}:latest
+                    docker-compose up -d
+                    EOF
+                '''
+            }
+        }
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="info-block">
+                        <h3 class="info-block-title">Преимущества Docker в CI/CD</h3>
+                        <ul class="feature-list">
+                            <li><strong>Консистентность</strong> — одинаковое окружение на всех этапах пайплайна</li>
+                            <li><strong>Изоляция</strong> — каждая сборка в чистом окружении</li>
+                            <li><strong>Параллелизм</strong> — легко запускать несколько задач одновременно</li>
+                            <li><strong>Переносимость</strong> — одна конфигурация работает везде</li>
+                            <li><strong>Кеширование слоёв</strong> — ускорение повторных сборок</li>
+                        </ul>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
