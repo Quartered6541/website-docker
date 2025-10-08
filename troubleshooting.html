@@ -214,6 +214,125 @@ docker rm -f container_name</code></pre>
                     </div>
                 </section>
 
+                <section id="image-issues" class="content-section-block">
+                    <h2 class="content-heading">Проблемы с образами</h2>
+                    <p>Проблемы при работе с Docker образами — от сборки до загрузки и управления.</p>
+
+                    <h3 class="content-subheading">1. Ошибка "image not found" или "pull access denied"</h3>
+                    <p>Образ не найден в локальном хранилище или на Docker Hub.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Проверка доступных локальных образов
+docker images
+
+# Явная загрузка образа с Docker Hub
+docker pull ubuntu:22.04
+
+# Поиск образа на Docker Hub
+docker search nginx
+
+# Проверка правильности имени образа
+# Формат: registry/username/repository:tag
+docker pull docker.io/library/nginx:latest</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-block info-block-warning">
+                        <h3 class="info-block-title">Частые причины:</h3>
+                        <ul class="feature-list">
+                            <li>Опечатка в имени образа или тега</li>
+                            <li>Образ находится в приватном репозитории (требуется авторизация)</li>
+                            <li>Нет доступа к интернету или Docker Hub недоступен</li>
+                            <li>Неправильный registry указан в имени образа</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="content-subheading">2. Ошибки при сборке образа (docker build)</h3>
+                    <p>Проблемы могут возникать на этапе выполнения инструкций Dockerfile.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Сборка с подробным выводом
+docker build --progress=plain -t myapp:latest .
+
+# Сборка без использования кэша
+docker build --no-cache -t myapp:latest .
+
+# Сборка с выводом промежуточных контейнеров для отладки
+docker build --rm=false -t myapp:latest .
+
+# Указание конкретного Dockerfile
+docker build -f Dockerfile.dev -t myapp:dev .</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">3. Образ занимает слишком много места</h3>
+                    <p>Большой размер образа замедляет развертывание и увеличивает использование дискового пространства.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Просмотр размера образов
+docker images
+
+# Анализ слоев образа
+docker history image_name
+
+# Просмотр подробной информации об образе
+docker inspect image_name
+
+# Удаление неиспользуемых образов
+docker image prune -a</code></pre>
+                        </div>
+                    </div>
+
+                    <p><strong>Способы уменьшения размера:</strong></p>
+                    <ul class="feature-list">
+                        <li>Используйте минимальные базовые образы (Alpine Linux)</li>
+                        <li>Применяйте multi-stage builds</li>
+                        <li>Объединяйте RUN команды для уменьшения слоев</li>
+                        <li>Удаляйте временные файлы в том же слое</li>
+                        <li>Используйте .dockerignore для исключения ненужных файлов</li>
+                    </ul>
+
+                    <h3 class="content-subheading">4. Конфликт версий или зависимостей</h3>
+                    <p>Несовместимость версий пакетов или библиотек может привести к ошибкам при сборке или запуске.</p>
+
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Dockerfile</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Плохо: использование latest может привести к несовместимости
+FROM node:latest
+
+# Хорошо: фиксируем конкретную версию
+FROM node:18.17.0-alpine
+
+# Фиксируем версии зависимостей
+RUN npm install express@4.18.2</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-block">
+                        <h3 class="info-block-title">Рекомендация</h3>
+                        <p>Всегда указывайте конкретные версии базовых образов и зависимостей. Это обеспечит воспроизводимость сборки и предотвратит неожиданные проблемы.</p>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
