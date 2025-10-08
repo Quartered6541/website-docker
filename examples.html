@@ -445,6 +445,112 @@ docker-compose restart nginx</code></pre>
                     </div>
                 </section>
 
+                <section id="example4" class="content-section-block">
+                    <h2 class="content-heading">Пример 4: База данных для разработки</h2>
+                    <p>Docker идеально подходит для быстрого развёртывания баз данных в локальном окружении разработки. Не нужно устанавливать СУБД на хост-машину — всё работает в контейнере.</p>
+
+                    <h3 class="content-subheading">PostgreSQL с pgAdmin</h3>
+                    <p>Запустим PostgreSQL с веб-интерфейсом pgAdmin для управления:</p>
+                    <div class="code-block-wrapper">
+                        <pre><code>version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: dev_postgres
+    environment:
+      POSTGRES_USER: developer
+      POSTGRES_PASSWORD: dev_password
+      POSTGRES_DB: development_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: dev_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_dev_data:</code></pre>
+                    </div>
+
+                    <h3 class="content-subheading">MySQL с phpMyAdmin</h3>
+                    <p>Альтернативный вариант с MySQL:</p>
+                    <div class="code-block-wrapper">
+                        <pre><code>version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: dev_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: myapp_db
+      MYSQL_USER: developer
+      MYSQL_PASSWORD: dev_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_dev_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: dev_phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root_password
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_dev_data:</code></pre>
+                    </div>
+
+                    <h3 class="content-subheading">Использование</h3>
+                    <div class="code-block-wrapper">
+                        <pre><code># Запустить базу данных
+docker-compose up -d
+
+# PostgreSQL доступна на localhost:5432
+# pgAdmin доступен на http://localhost:5050
+
+# MySQL доступна на localhost:3306
+# phpMyAdmin доступен на http://localhost:8080
+
+# Подключиться к БД из приложения
+DATABASE_URL=postgresql://developer:dev_password@localhost:5432/development_db
+
+# Выполнить SQL-скрипт
+docker-compose exec postgres psql -U developer -d development_db -f /path/to/script.sql
+
+# Создать резервную копию
+docker-compose exec postgres pg_dump -U developer development_db > backup.sql</code></pre>
+                    </div>
+
+                    <div class="info-block">
+                        <p><strong>Преимущества:</strong></p>
+                        <ul class="feature-list">
+                            <li>Не нужно устанавливать СУБД на хост-систему</li>
+                            <li>Легко переключаться между версиями БД</li>
+                            <li>Данные сохраняются в volumes и не теряются при пересоздании контейнера</li>
+                            <li>Init-скрипты в <code>/docker-entrypoint-initdb.d</code> выполняются при первом запуске</li>
+                        </ul>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
