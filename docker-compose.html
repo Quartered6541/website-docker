@@ -508,6 +508,212 @@ volumes:
                     </div>
                 </section>
 
+                <section id="commands" class="content-section-block">
+                    <h2 class="content-heading">Основные команды Docker Compose</h2>
+                    <p>Команды для управления многоконтейнерными приложениями.</p>
+
+                    <h3 class="content-subheading">docker compose up - Запуск сервисов</h3>
+                    <p>Создаёт и запускает контейнеры, определённые в docker-compose.yml.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Запуск в фоновом режиме
+docker compose up -d
+
+# Запуск с пересборкой образов
+docker compose up --build
+
+# Запуск конкретного сервиса
+docker compose up web</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">docker compose down - Остановка и удаление</h3>
+                    <p>Останавливает и удаляет контейнеры, сети.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Остановка и удаление
+docker compose down
+
+# С удалением томов
+docker compose down --volumes</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">docker compose ps - Список сервисов</h3>
+                    <p>Показывает статус всех сервисов.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>docker compose ps</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">docker compose logs - Просмотр логов</h3>
+                    <p>Выводит логи сервисов.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Логи всех сервисов
+docker compose logs
+
+# Логи с отслеживанием
+docker compose logs -f
+
+# Логи конкретного сервиса
+docker compose logs web</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">docker compose exec - Выполнение команд</h3>
+                    <p>Запускает команду в работающем контейнере.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Запуск bash в контейнере
+docker compose exec web bash
+
+# Запуск команды в БД
+docker compose exec db psql -U postgres</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">docker compose build - Сборка образов</h3>
+                    <p>Собирает или пересобирает сервисы.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code># Сборка всех сервисов
+docker compose build
+
+# Сборка без кэша
+docker compose build --no-cache</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="content-subheading">docker compose restart - Перезапуск</h3>
+                    <p>Перезапускает сервисы.</p>
+                    <div class="code-block-container">
+                        <div class="code-block-header">
+                            <span class="code-block-language">Bash</span>
+                            <button class="code-copy-btn">Копировать</button>
+                        </div>
+                        <div class="code-block-content">
+                            <pre><code>docker compose restart</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="reference" class="content-section-block">
+                    <h2 class="content-heading">Справочная таблица команд</h2>
+                    <p>Быстрый справочник основных команд Docker Compose.</p>
+
+                    <div class="table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Команда</th>
+                                    <th>Описание</th>
+                                    <th>Пример</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>docker compose up</code></td>
+                                    <td>Создание и запуск контейнеров</td>
+                                    <td><code>docker compose up -d</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>docker compose down</code></td>
+                                    <td>Остановка и удаление контейнеров</td>
+                                    <td><code>docker compose down</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>docker compose ps</code></td>
+                                    <td>Список запущенных сервисов</td>
+                                    <td><code>docker compose ps</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>docker compose logs</code></td>
+                                    <td>Просмотр логов сервисов</td>
+                                    <td><code>docker compose logs -f</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>docker compose exec</code></td>
+                                    <td>Выполнение команды в контейнере</td>
+                                    <td><code>docker compose exec web bash</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>docker compose build</code></td>
+                                    <td>Сборка или пересборка сервисов</td>
+                                    <td><code>docker compose build</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>docker compose start</code></td>
+                                    <td>Запуск существующих контейнеров</td>
+                                    <td><code>docker compose start</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>docker compose stop</code></td>
+                                    <td>Остановка контейнеров</td>
+                                    <td><code>docker compose stop</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>docker compose restart</code></td>
+                                    <td>Перезапуск сервисов</td>
+                                    <td><code>docker compose restart</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>docker compose pull</code></td>
+                                    <td>Загрузка образов сервисов</td>
+                                    <td><code>docker compose pull</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>docker compose config</code></td>
+                                    <td>Проверка и просмотр конфигурации</td>
+                                    <td><code>docker compose config</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>docker compose scale</code></td>
+                                    <td>Масштабирование сервисов</td>
+                                    <td><code>docker compose up --scale web=3</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="info-block">
+                        <p><strong>Подсказка:</strong> Используйте <code>docker compose --help</code> для просмотра всех доступных команд и опций.</p>
+                    </div>
+                </section>
+
+                <section id="video" class="content-section-block">
+                    <h2 class="content-heading">Видео: Docker Compose на практике</h2>
+                    <p>Практическое руководство по использованию Docker Compose:</p>
+                    <div class="video-wrapper">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Qw9zlE3t8Ko" title="Docker Compose Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </section>
+
             </main>
 
             <!-- Sidebar -->
