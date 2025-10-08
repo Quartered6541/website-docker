@@ -251,7 +251,7 @@ docker-compose down</code></pre>
 
                     <h3 class="content-subheading">Dockerfile для ML-проекта</h3>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">Dockerfile</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code>FROM python:3.11-slim
@@ -284,7 +284,7 @@ CMD ["python", "app.py"]</code></pre>
 
                     <h3 class="content-subheading">requirements.txt</h3>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">Text</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code>numpy==1.24.3
@@ -299,7 +299,7 @@ gunicorn==21.2.0</code></pre>
                     <h3 class="content-subheading">docker-compose.yml</h3>
                     <p>Конфигурация с GPU-поддержкой (опционально):</p>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">YAML</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code>version: '3.8'
@@ -327,7 +327,7 @@ services:
 
                     <h3 class="content-subheading">Запуск</h3>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">Bash</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code># Сборка образа
@@ -355,7 +355,7 @@ docker-compose exec ml-app jupyter notebook --ip=0.0.0.0 --allow-root</code></pr
 
                     <h3 class="content-subheading">Структура проекта</h3>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">Структура</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code>microservices-app/
@@ -374,7 +374,7 @@ docker-compose exec ml-app jupyter notebook --ip=0.0.0.0 --allow-root</code></pr
 
                     <h3 class="content-subheading">docker-compose.yml</h3>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">YAML</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code>version: '3.8'
@@ -434,7 +434,7 @@ volumes:
                     <h3 class="content-subheading">nginx/nginx.conf</h3>
                     <p>Конфигурация Nginx для проксирования запросов:</p>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">Nginx</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code>events {
@@ -473,7 +473,7 @@ http {
 
                     <h3 class="content-subheading">Запуск всей системы</h3>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">Bash</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code># Запустить все сервисы
@@ -508,7 +508,7 @@ docker-compose restart nginx</code></pre>
                     <h3 class="content-subheading">PostgreSQL с pgAdmin</h3>
                     <p>Запустим PostgreSQL с веб-интерфейсом pgAdmin для управления:</p>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">YAML</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code>version: '3.8'
@@ -546,7 +546,7 @@ volumes:
                     <h3 class="content-subheading">MySQL с phpMyAdmin</h3>
                     <p>Альтернативный вариант с MySQL:</p>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">YAML</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code>version: '3.8'
@@ -585,7 +585,7 @@ volumes:
 
                     <h3 class="content-subheading">Использование</h3>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">Bash</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code># Запустить базу данных
@@ -625,7 +625,7 @@ docker-compose exec postgres pg_dump -U developer development_db > backup.sql</c
 
                     <h3 class="content-subheading">docker-compose.yml</h3>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">YAML</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code>version: '3.8'
@@ -667,7 +667,7 @@ volumes:
 
                     <h3 class="content-subheading">Запуск WordPress</h3>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">Bash</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code># Запустить WordPress
@@ -691,7 +691,7 @@ docker-compose down -v</code></pre>
 
                     <h3 class="content-subheading">Продвинутая конфигурация с SSL и phpMyAdmin</h3>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">YAML</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code>version: '3.8'
@@ -765,7 +765,7 @@ volumes:
                     <h3 class="content-subheading">GitHub Actions</h3>
                     <p>Пример workflow для сборки и публикации Docker-образа:</p>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">YAML</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code>name: Docker Build and Push
@@ -809,7 +809,7 @@ jobs:
                     <h3 class="content-subheading">GitLab CI</h3>
                     <p>Файл <code>.gitlab-ci.yml</code> для автоматизации тестирования и деплоя:</p>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">YAML</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code>stages:
@@ -854,7 +854,7 @@ deploy:
                     <h3 class="content-subheading">Jenkins Pipeline</h3>
                     <p>Jenkinsfile для Docker-based pipeline:</p>
                     <div class="code-block-container">
-                        <div class="code-block-header"><span class="code-block-language">Code</span><button class="code-copy-btn">Копировать</button>
+                        <div class="code-block-header"><span class="code-block-language">Groovy</span><button class="code-copy-btn">Копировать</button>
                         </div>
                         <div class="code-block-content">
                         <pre><code>pipeline {
