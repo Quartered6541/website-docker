@@ -641,6 +641,13 @@
     }
 }
 
+@media (max-width: 768px) {
+    .content-main {
+        padding: 1.5rem 1.25rem;
+        border-radius: 6px;
+    }
+}
+
 /* Landing Page Styles */
 
 /* Features Section */
