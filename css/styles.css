@@ -62,6 +62,18 @@
     margin: 0 !important;
 }
 
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.2s ease;
+}
+
+.logo-link:hover {
+    opacity: 0.8;
+}
+
 /* Бургер-меню */
 .burger-menu-btn {
     display: none;
