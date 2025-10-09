@@ -776,6 +776,10 @@
         grid-template-columns: 1fr;
     }
 
+    .feature-image {
+        object-fit: contain;
+    }
+
     .use-cases-grid {
         grid-template-columns: repeat(2, 1fr);
     }
