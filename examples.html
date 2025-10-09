@@ -900,7 +900,7 @@ deploy:
         stage('Deploy') {
             steps {
                 sh '''
-                    ssh user@production-server << EOF
+                    ssh user@production-server &lt;&lt; EOF
                     docker pull ${DOCKER_IMAGE}:latest
                     docker-compose up -d
                     EOF
