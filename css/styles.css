@@ -773,7 +773,7 @@
 /* Responsive для лендинга */
 @media (max-width: 768px) {
     .hero-section .h0-mktg {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 
     .features-grid {
