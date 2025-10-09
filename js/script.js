@@ -208,3 +208,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Кнопка "Вверх" для мобильных устройств
+const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+if (scrollToTopBtn) {
+    // Показываем кнопку при прокрутке вниз на 300px
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+    });
+
+    // Плавная прокрутка наверх при клике
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
