@@ -203,10 +203,12 @@
 }
 
 .breadcrumb-item:not(:last-child)::after {
-    content: '/';
-    margin: 0 0.5rem;
-    color: #6e7781;
-    font-size: 0.875rem;
+    content: '/' !important;
+    margin: 0 0.5rem !important;
+    color: #6e7781 !important;
+    font-size: 0.875rem !important;
+    position: static !important;
+    border: none !important;
 }
 
 .breadcrumb-item a {
@@ -985,6 +987,12 @@
     padding: 4px 0;
     min-width: 200px;
     z-index: 1000;
+}
+
+.dropdown-menu::before,
+.dropdown-menu::after {
+    display: none !important;
+    border: none !important;
 }
 
 .dropdown-menu.show {
