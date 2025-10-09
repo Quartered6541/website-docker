@@ -46,9 +46,11 @@ if (isHomePage && !currentPath.includes('what-is-docker')) {
     let lastScrollTop = 0;
     const header = document.getElementById('main-header');
     const mobileNavElement = document.getElementById('mobile-nav');
+    const scrollThreshold = 50; // Порог прокрутки для показа header
 
     window.addEventListener('scroll', function() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollDifference = Math.abs(scrollTop - lastScrollTop);
 
         if (scrollTop > lastScrollTop && scrollTop > 100) {
             // Прокрутка вниз - скрываем header и мобильное меню
@@ -56,8 +58,8 @@ if (isHomePage && !currentPath.includes('what-is-docker')) {
             if (mobileNavElement.style.display === 'block') {
                 mobileNavElement.style.transform = 'translateY(-100%)';
             }
-        } else {
-            // Прокрутка вверх - показываем header
+        } else if (scrollDifference > scrollThreshold) {
+            // Прокрутка вверх - показываем header только при значительной прокрутке
             header.style.transform = 'translateY(0)';
             if (mobileNavElement.style.display === 'block') {
                 mobileNavElement.style.transform = 'translateY(0)';
