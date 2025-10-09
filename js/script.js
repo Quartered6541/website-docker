@@ -39,36 +39,7 @@ function typeWriter() {
     setTimeout(typeWriter, speed);
 }
 
-// Скрытие/показ header при прокрутке (только на главной странице)
-const currentPath = window.location.pathname;
-const isHomePage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/index.html') || currentPath.endsWith('/');
-if (isHomePage && !currentPath.includes('what-is-docker')) {
-    let lastScrollTop = 0;
-    const header = document.getElementById('main-header');
-    const mobileNavElement = document.getElementById('mobile-nav');
-    const scrollThreshold = 50; // Порог прокрутки для показа header
-
-    window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollDifference = Math.abs(scrollTop - lastScrollTop);
-
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            // Прокрутка вниз - скрываем header и мобильное меню
-            header.style.transform = 'translateY(-100%)';
-            if (mobileNavElement.style.display === 'block') {
-                mobileNavElement.style.transform = 'translateY(-100%)';
-            }
-        } else if (scrollDifference > scrollThreshold) {
-            // Прокрутка вверх - показываем header только при значительной прокрутке
-            header.style.transform = 'translateY(0)';
-            if (mobileNavElement.style.display === 'block') {
-                mobileNavElement.style.transform = 'translateY(0)';
-            }
-        }
-
-        lastScrollTop = scrollTop;
-    });
-}
+// Скрытие/показ header отключено - header теперь статичный
 
 // Управление бургер-меню
 const burgerMenu = document.getElementById('burger-menu');

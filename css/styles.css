@@ -21,13 +21,9 @@
 
 /* Стили header */
 .main-header {
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 1000;
-    transition: all 0.3s ease-in-out;
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95);
     border-bottom: 1px solid rgba(208, 215, 222, 0.5);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
@@ -101,11 +97,9 @@
     display: none;
     background-color: #ffffff;
     border-bottom: 1px solid #d0d7de;
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 999;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
 }
 
 /* Мобильное меню */
