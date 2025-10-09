@@ -63,7 +63,7 @@
 }
 
 .logo-link {
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
     display: flex;
     align-items: center;
@@ -72,6 +72,7 @@
 
 .logo-link:hover {
     opacity: 0.8;
+    text-decoration: none !important;
 }
 
 /* Бургер-меню */
